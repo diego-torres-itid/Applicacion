@@ -1,15 +1,14 @@
-import Card from "@/src/modules/core/components/Card.js";
+import "@/global.css";
+import Card from '@/src/modules/core/components/Card';
 import { ThemedText } from '@/src/modules/core/components/themed-text';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import "../global.css";
 export default function HomeScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView>
-
           <ThemedText>
-            Estea es el area de home.
+            Esta es el area de home.
           </ThemedText>
           <Card></Card>
       </SafeAreaView>

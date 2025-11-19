@@ -1,8 +1,8 @@
+import "@/global.css";
+import { Color, FontFamily, Gap, Height, Padding } from "@/src/assets/styles/GlobalStyles";
 import * as React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Gap, FontFamily, Color, Padding, Height } from "@/src/assets/styles/GlobalStyles";
-	
 export default function Card(){
 		  
 		  return (
@@ -11,7 +11,7 @@ export default function Card(){
 							<View style={styles.card}>
 								  <View style={[styles.superior, styles.buttonFlexBox1]}>
 										<View style={[styles.heading3, styles.heading3Position]}>
-											  <Text style={styles.baseDeDatos}>Base de Datos</Text>
+											  <Text style={styles.baseDeDatos} >Base de Datos</Text>
 										</View>
 								  </View>
 								  <View style={styles.inferior}>

@@ -1,10 +1,10 @@
 import "@/global.css";
+import Logo from "@/src/assets/logo.svg";
 import { router } from 'expo-router';
 import * as React from "react";
 import { useRef } from 'react';
 import { Animated, PanResponder, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import Logo from "../../src/assets/logo.svg";
 export default function Etapa1() {
     const pan = useRef(new Animated.Value(0)).current;
     const panResponder = useRef(
@@ -36,15 +36,15 @@ return (
             <View {...panResponder.panHandlers}>
                 <Animated.View style={{ transform: [{ translateY: pan }] }} className="flex-1 justify-between">
                     <View className="top-16">
-                        <Text className="text-gray-400">Evoluciona con la tecnología</Text>
+                        <Text className="font-vs-extralight text-gray-600">Evoluciona con la tecnología</Text>
                     </View>
                     <View className="items-center">
                         <Logo width={150} height={150} />
-                        <Text className="text-6xl mt-10">Ofiuco</Text>
+                        <Text className="font-vs-medium text-6xl mt-10">Ofiuco</Text>
                     </View>
                     <View className="bottom-16 items-center">
                         <Text className="text-2xl">↑</Text>
-                        <Text className="text-gray-500 mt-2">Desliza hacia arriba</Text>
+                        <Text className="font-vs-semibold text-gray-600 mt-2">Desliza hacia arriba</Text>
                     </View>
                 </Animated.View>
             </View>

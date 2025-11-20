@@ -30,7 +30,7 @@ export default function Etapa1() {
         },
     })
 ).current;
-
+// asdas
 return (
     <SafeAreaProvider>
         <SafeAreaView className="flex-1 items-center bg-Fondo">

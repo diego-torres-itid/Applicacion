@@ -26,6 +26,19 @@ import UserFillBlack from "../../../assets/icons/user/user-fill-black.svg";
 import UserFillWhite from "../../../assets/icons/user/user-fill-white.svg";
 import UserOutlineBlack from "../../../assets/icons/user/user-outline-black.svg";
 import UserOutlineWhite from "../../../assets/icons/user/user-outline-white.svg";
+// USEFUL
+import BackBlack from "../../../assets/icons/back-black.svg";
+import BackGray from "../../../assets/icons/back-gray.svg";
+import CalendarGray from "../../../assets/icons/calendar-gray.svg";
+import CloseBlack from "../../../assets/icons/close-black.svg";
+import CloseGray from "../../../assets/icons/close-gray.svg";
+import EyeCloseGray from "../../../assets/icons/eye-close-gray.svg";
+import EyeOpenGray from "../../../assets/icons/eye-open-gray.svg";
+import MailGray from "../../../assets/icons/mail-gray.svg";
+import NextBlack from "../../../assets/icons/next-black.svg";
+import NextGray from "../../../assets/icons/next-gray.svg";
+import SecureGray from "../../../assets/icons/secure-gray.svg";
+import UserGray from "../../../assets/icons/user-gray.svg";
 
 const iconMap = {
     Home: {
@@ -78,11 +91,43 @@ const iconMap = {
             Blanco: UserFillWhite,
         },
     },
+
+    // ÍCONOS SIMPLES (USEFUL)
+    BackBlack,
+    BackGray,
+    CalendarGray,
+    CloseBlack,
+    CloseGray,
+    EyeCloseGray,
+    EyeOpenGray,
+    MailGray,
+    NextBlack,
+    NextGray,
+    SecureGray,
+    UserGray,
 };
 
+/**
+ * @typedef {Object} IconProps
+ * @property {string} tipo
+ * @property {string} [relleno]
+ * @property {string} [color]
+ * @property {number} [size]
+ */
 
+/**
+ * @param {IconProps} props
+ */
 export default function Icon({ tipo, relleno, color, size = 45 }) {
-    const Svg = iconMap?.[tipo]?.[relleno]?.[color];
-    if (!Svg) return null; 
+    const entry = iconMap[tipo];
+
+    if (entry && typeof entry !== "object") {
+        const Svg = entry;
+        return <Svg width={size} height={size} />;
+    }
+
+    const Svg = entry?.[relleno]?.[color];
+    if (!Svg) return null;
+
     return <Svg width={size} height={size} />;
 }

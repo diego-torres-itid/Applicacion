@@ -1,4 +1,5 @@
 import "@/global.css";
+// @ts-ignore
 import Logo from "@/src/assets/logo.svg";
 import { router } from 'expo-router';
 import * as React from "react";
@@ -32,7 +33,7 @@ export default function Etapa1() {
 
 return (
     <SafeAreaProvider>
-        <SafeAreaView className="flex-1 items-center">
+        <SafeAreaView className="flex-1 items-center bg-Fondo">
             <View {...panResponder.panHandlers}>
                 <Animated.View style={{ transform: [{ translateY: pan }] }} className="flex-1 justify-between">
                     <View className="top-16">

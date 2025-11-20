@@ -36,15 +36,15 @@ return (
             <View {...panResponder.panHandlers}>
                 <Animated.View style={{ transform: [{ translateY: pan }] }} className="flex-1 justify-between">
                     <View className="top-16">
-                        <Text className="font-vs-extralight text-gray-600">Evoluciona con la tecnología</Text>
+                        <Text className="font-vs-lighttext text-gray-600">Evoluciona con la tecnología</Text>
                     </View>
                     <View className="items-center">
                         <Logo width={150} height={150} />
-                        <Text className="font-vs-medium text-6xl mt-10">Ofiuco</Text>
+                        <Text className="font-vs-lightdeck text-6xl mt-10">Ofiuco</Text>
                     </View>
                     <View className="bottom-16 items-center">
                         <Text className="text-2xl">↑</Text>
-                        <Text className="font-vs-semibold text-gray-600 mt-2">Desliza hacia arriba</Text>
+                        <Text className="font-vs-bold text-gray-600 mt-2">Desliza hacia arriba</Text>
                     </View>
                 </Animated.View>
             </View>

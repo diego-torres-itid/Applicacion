@@ -12,19 +12,28 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   const [loaded] = useFonts({
+    //BLACK
+
     VisualSansBlack: require('../src/assets/fonts/WFVisualSans-Black.otf'),
     VisualSansBlackDeck: require('../src/assets/fonts/WFVisualSans-BlackDeck.otf'),
+    VisualSansBlackDeckItalic: require('../src/assets/fonts/WFVisualSans-BlackDeckItalic.otf'),
+    VisualSansBlackItalic: require('../src/assets/fonts/WFVisualSans-BlackItalic.otf'),
     VisualSansBlackText: require('../src/assets/fonts/WFVisualSans-BlackText.otf'),
     VisualSansBlackTextItalic: require('../src/assets/fonts/WFVisualSans-BlackTextItalic.otf'),
+    // BOLD
 
     VisualSansBold: require('../src/assets/fonts/WFVisualSans-Bold.otf'),
     VisualSansBoldDeck: require('../src/assets/fonts/WFVisualSans-BoldDeck.otf'),
     VisualSansBoldDeckItalic: require('../src/assets/fonts/WFVisualSans-BoldDeckItalic.otf'),
     VisualSansBoldItalic: require('../src/assets/fonts/WFVisualSans-BoldItalic.otf'),
+    VisualSansBoldText: require('../src/assets/fonts/WFVisualSans-BoldText.otf'),
     VisualSansBoldTextItalic: require('../src/assets/fonts/WFVisualSans-BoldTextItalic.otf'),
-    // EXTRA LIGHT
+    // EXTRA BOLD
+
+    VisualSansExtraBold: require('../src/assets/fonts/WFVisualSans-ExtraBold.otf'),
     VisualSansExtraBoldDeck: require('../src/assets/fonts/WFVisualSans-ExtraBoldDeck.otf'),
     VisualSansExtraBoldDeckItalic: require('../src/assets/fonts/WFVisualSans-ExtraBoldDeckItalic.otf'),
+    VisualSansExtraBoldItalic: require('../src/assets/fonts/WFVisualSans-ExtraBoldItalic.otf'),
     VisualSansExtraBoldText: require('../src/assets/fonts/WFVisualSans-ExtraBoldText.otf'),
     VisualSansExtraBoldTextItalic: require('../src/assets/fonts/WFVisualSans-BoldTextItalic.otf'),
   
@@ -40,11 +49,15 @@ export default function RootLayout() {
     VisualSansLightItalic: require('../src/assets/fonts/WFVisualSans-LightItalic.otf'),
     VisualSansLightText: require('../src/assets/fonts/WFVisualSans-LightText.otf'),
     VisualSansLightTextItalic: require('../src/assets/fonts/WFVisualSans-LightTextItalic.otf'),
+    VisualSansLight: require('../src/assets/fonts/WFVisualSans-Light.otf'),
+    VisualSansLightDeck: require('../src/assets/fonts/WFVisualSans-LightDeck.otf'),
+    VisualSansLightDeckItalic: require('../src/assets/fonts/WFVisualSans-LightDeckItalic.otf'),
   
     // MEDIUM
     VisualSansMedium: require('../src/assets/fonts/WFVisualSans-Medium.otf'),
     VisualSansMediumDeck: require('../src/assets/fonts/WFVisualSans-MediumDeck.otf'),
     VisualSansMediumDeckItalic: require('../src/assets/fonts/WFVisualSans-MediumDeckItalic.otf'),
+    VisualSansMediumItalic: require('../src/assets/fonts/WFVisualSans-MediumItalic.otf'),
     VisualSansMediumText: require('../src/assets/fonts/WFVisualSans-MediumText.otf'),
     VisualSansMediumTextItalic: require('../src/assets/fonts/WFVisualSans-MediumTextItalic.otf'),
   
@@ -67,6 +80,7 @@ export default function RootLayout() {
     // THIN
     VisualSansThin: require('../src/assets/fonts/WFVisualSans-Thin.otf'),
     VisualSansThinDeck: require('../src/assets/fonts/WFVisualSans-ThinDeck.otf'),
+    VisualSansThinDeckItalic: require('../src/assets/fonts/WFVisualSans-ThinDeckItalic.otf'),
     VisualSansThinItalic: require('../src/assets/fonts/WFVisualSans-ThinItalic.otf'),
     VisualSansThinText: require('../src/assets/fonts/WFVisualSans-ThinText.otf'),
     VisualSansThinTextItalic: require('../src/assets/fonts/WFVisualSans-ThinTextItalic.otf'),

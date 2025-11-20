@@ -1,20 +1,96 @@
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../global.css';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
+  const [loaded] = useFonts({
+    VisualSansBlack: require('../src/assets/fonts/WFVisualSans-Black.otf'),
+    VisualSansBlackDeck: require('../src/assets/fonts/WFVisualSans-BlackDeck.otf'),
+    VisualSansBlackText: require('../src/assets/fonts/WFVisualSans-BlackText.otf'),
+    VisualSansBlackTextItalic: require('../src/assets/fonts/WFVisualSans-BlackTextItalic.otf'),
+
+    VisualSansBold: require('../src/assets/fonts/WFVisualSans-Bold.otf'),
+    VisualSansBoldDeck: require('../src/assets/fonts/WFVisualSans-BoldDeck.otf'),
+    VisualSansBoldDeckItalic: require('../src/assets/fonts/WFVisualSans-BoldDeckItalic.otf'),
+    VisualSansBoldItalic: require('../src/assets/fonts/WFVisualSans-BoldItalic.otf'),
+    VisualSansBoldTextItalic: require('../src/assets/fonts/WFVisualSans-BoldTextItalic.otf'),
+    // EXTRA LIGHT
+    VisualSansExtraBoldDeck: require('../src/assets/fonts/WFVisualSans-ExtraBoldDeck.otf'),
+    VisualSansExtraBoldDeckItalic: require('../src/assets/fonts/WFVisualSans-ExtraBoldDeckItalic.otf'),
+    VisualSansExtraBoldText: require('../src/assets/fonts/WFVisualSans-ExtraBoldText.otf'),
+    VisualSansExtraBoldTextItalic: require('../src/assets/fonts/WFVisualSans-BoldTextItalic.otf'),
+  
+    // EXTRA LIGHT
+    VisualSansExtraLight: require('../src/assets/fonts/WFVisualSans-ExtraLight.otf'),
+    VisualSansExtraLightDeck: require('../src/assets/fonts/WFVisualSans-ExtraLightDeck.otf'),
+    VisualSansExtraLightDeckItalic: require('../src/assets/fonts/WFVisualSans-ExtraLightDeckItalic.otf'),
+    VisualSansExtraLightItalic: require('../src/assets/fonts/WFVisualSans-ExtraLightItalic.otf'),
+    VisualSansExtraLightText: require('../src/assets/fonts/WFVisualSans-ExtraLightText.otf'),
+    VisualSansExtraLightTextItalic: require('../src/assets/fonts/WFVisualSans-ExtraLightTextItalic.otf'),
+  
+    // LIGHT
+    VisualSansLightItalic: require('../src/assets/fonts/WFVisualSans-LightItalic.otf'),
+    VisualSansLightText: require('../src/assets/fonts/WFVisualSans-LightText.otf'),
+    VisualSansLightTextItalic: require('../src/assets/fonts/WFVisualSans-LightTextItalic.otf'),
+  
+    // MEDIUM
+    VisualSansMedium: require('../src/assets/fonts/WFVisualSans-Medium.otf'),
+    VisualSansMediumDeck: require('../src/assets/fonts/WFVisualSans-MediumDeck.otf'),
+    VisualSansMediumDeckItalic: require('../src/assets/fonts/WFVisualSans-MediumDeckItalic.otf'),
+    VisualSansMediumText: require('../src/assets/fonts/WFVisualSans-MediumText.otf'),
+    VisualSansMediumTextItalic: require('../src/assets/fonts/WFVisualSans-MediumTextItalic.otf'),
+  
+    // REGULAR
+    VisualSansRegular: require('../src/assets/fonts/WFVisualSans-Regular.otf'),
+    VisualSansRegularDeck: require('../src/assets/fonts/WFVisualSans-RegularDeck.otf'),
+    VisualSansRegularDeckItalic: require('../src/assets/fonts/WFVisualSans-RegularDeckItalic.otf'),
+    VisualSansRegularItalic: require('../src/assets/fonts/WFVisualSans-RegularItalic.otf'),
+    VisualSansRegularText: require('../src/assets/fonts/WFVisualSans-RegularText.otf'),
+    VisualSansRegularTextItalic: require('../src/assets/fonts/WFVisualSans-RegularTextItalic.otf'),
+  
+    // SEMIBOLD
+    VisualSansSemiBold: require('../src/assets/fonts/WFVisualSans-SemiBold.otf'),
+    VisualSansSemiBoldDeck: require('../src/assets/fonts/WFVisualSans-SemiBoldDeck.otf'),
+    VisualSansSemiBoldDeckItalic: require('../src/assets/fonts/WFVisualSans-SemiBoldDeckItalic.otf'),
+    VisualSansSemiBoldItalic: require('../src/assets/fonts/WFVisualSans-SemiBoldItalic.otf'),
+    VisualSansSemiBoldText: require('../src/assets/fonts/WFVisualSans-SemiBoldText.otf'),
+    VisualSansSemiBoldTextItalic: require('../src/assets/fonts/WFVisualSans-SemiBoldTextItalic.otf'),
+  
+    // THIN
+    VisualSansThin: require('../src/assets/fonts/WFVisualSans-Thin.otf'),
+    VisualSansThinDeck: require('../src/assets/fonts/WFVisualSans-ThinDeck.otf'),
+    VisualSansThinItalic: require('../src/assets/fonts/WFVisualSans-ThinItalic.otf'),
+    VisualSansThinText: require('../src/assets/fonts/WFVisualSans-ThinText.otf'),
+    VisualSansThinTextItalic: require('../src/assets/fonts/WFVisualSans-ThinTextItalic.otf'),
+  });
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  if (!loaded) {
+    return null;
+  }
+  
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
-        <Stack.Screen name="tabs/index" options={{ headerShown: false }}/>
-      </Stack>
-      <StatusBar style="auto" />
+        <Stack>
+          <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/etapa2" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/etapa3" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/etapa4" options={{ headerShown: false }}/>
+          <Stack.Screen name="tabs/index" options={{ headerShown: false }}/>
+        </Stack>
+        <StatusBar style="auto" />
     </ThemeProvider>
   );
 }

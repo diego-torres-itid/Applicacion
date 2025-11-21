@@ -19,15 +19,21 @@ export default function HomeScreen() {
                         <Text className="font-vs-extralight text-xl">Conversa con Neurona, nuestra IA especializada en salud, y mantén tu información médica organizada desde el primer día.</Text>
                     </View>
                 </View>
-                <View className="absolute w-2/5 right-20 bottom-40">
+                <View className="absolute w-4/5 bottom-40">
                     <Button 
                     text="Next"
                     textColor="Blanco" 
                     color="Primario" 
                     variant="Fill" 
                     onPress={() => router.push('./etapa3')}/>
+                    
                 </View>
-                <Pressable className="absolute top-20 left-10 rounded-full bg-white p-3" onPress={() => router.back()}>
+                <View className="absolute top-40 flex-row gap-3 justify-center">
+                    <View className="p-0.5 w-1/5 bg-Primario border-none rounded-full"></View>
+                    <View className="p-0.5 w-1/5 bg-Blanco border-2 border-gray-200 rounded-full"></View>
+                    <View className="p-0.5 w-1/5 bg-Blanco border-2 border-gray-200 rounded-full"></View>
+                </View>
+                <Pressable className="absolute top-24 left-5" onPress={() => router.back()}>
                     <Icon tipo="BackGray" size={30} />
                 </Pressable>
             </SafeAreaView>

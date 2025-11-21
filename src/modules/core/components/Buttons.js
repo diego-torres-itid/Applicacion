@@ -21,7 +21,7 @@ export default function Button({
     return (
         <Pressable
             onPress={onPress}
-            className="py-2h rounded-full items-center w-full border-2"
+            className="py-2 rounded-full items-center w-full border-2"
             style={{
                 backgroundColor: bgColor,
                 borderColor: borderColor,

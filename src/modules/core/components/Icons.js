@@ -38,7 +38,18 @@ import MailGray from "../../../assets/icons/mail-gray.svg";
 import NextBlack from "../../../assets/icons/next-black.svg";
 import NextGray from "../../../assets/icons/next-gray.svg";
 import SecureGray from "../../../assets/icons/secure-gray.svg";
+import UserBlue from "../../../assets/icons/user-blue.svg";
 import UserGray from "../../../assets/icons/user-gray.svg";
+
+import CalendarBlue from "../../../assets/icons/calendar-blue.svg";
+import DownBlue from "../../../assets/icons/down-blue.svg";
+import DownGray from "../../../assets/icons/down-gray.svg";
+import EyeCloseBlue from "../../../assets/icons/eye-close-blue.svg";
+import EyeOpenBlue from "../../../assets/icons/eye-open-blue.svg";
+import MailBlue from "../../../assets/icons/mail-blue.svg";
+import SecureBlue from "../../../assets/icons/secure-blue.svg";
+import UpBlue from "../../../assets/icons/up-blue.svg";
+import UpGray from "../../../assets/icons/up-gray.svg";
 
 const iconMap = {
     Home: {
@@ -105,6 +116,16 @@ const iconMap = {
     NextGray,
     SecureGray,
     UserGray,
+    UserBlue,
+    CalendarBlue,
+    DownBlue,
+    DownGray,
+    EyeCloseBlue,
+    EyeOpenBlue,
+    MailBlue,
+    SecureBlue,
+    UpBlue,
+    UpGray,
 };
 
 /**

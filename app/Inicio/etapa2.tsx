@@ -7,7 +7,8 @@ import { Pressable, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 // @ts-ignore
 import Study from "../../src/assets/images/undraw-book-writer.svg";
-export default function HomeScreen() {
+
+export default function Etapa2() {
     const router = useRouter();
     return (
         <SafeAreaProvider>

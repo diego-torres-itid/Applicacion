@@ -7,6 +7,8 @@ import { useRef } from 'react';
 import { Animated, PanResponder, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function Etapa1() {
+
+    // Funciones para el funcionamiento del slide hacia arriba //
     const pan = useRef(new Animated.Value(0)).current;
     const panResponder = useRef(
     PanResponder.create({
@@ -20,7 +22,7 @@ export default function Etapa1() {
             },
         onPanResponderRelease: (_, gesture) => {
             if (gesture.dy < -100) {
-                router.replace('/Inicio/etapa2');
+                router.replace('/Inicio/etapa2'); 
             } else {
                 Animated.spring(pan, {
                     toValue: 0,
@@ -30,7 +32,9 @@ export default function Etapa1() {
         },
     })
 ).current;
-// asdas
+
+
+
 return (
     <SafeAreaProvider>
         <SafeAreaView className="flex-1 items-center bg-Fondo">

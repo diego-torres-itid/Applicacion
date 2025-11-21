@@ -7,7 +7,7 @@ import { Pressable, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 // @ts-ignore
 import News from "../../src/assets/images/undraw-happy-news.svg";
-export default function HomeScreen() {
+export default function Etapa3() {
     const router = useRouter();
     return (
         <SafeAreaProvider>

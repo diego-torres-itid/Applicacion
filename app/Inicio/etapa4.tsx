@@ -9,7 +9,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 // @ts-ignore
 import Medicine from "../../src/assets/images/undraw-medicine.svg";
 
-export default function HomeScreen() {
+export default function Etapa4() {
     const router = useRouter();
 
     const screenHeight = Dimensions.get("window").height;
@@ -36,14 +36,51 @@ export default function HomeScreen() {
             })
         ]).start();
     };
+    const bajarPanel = () => {
+        Animated.parallel([
+            Animated.timing(translateY, {
+                toValue: screenHeight, // lo manda hasta abajo
+                duration: 600,
+                useNativeDriver: true,
+            }),
+            Animated.timing(overlayOpacity, {
+                toValue: 0, // transparente
+                duration: 600,
+                useNativeDriver: true,
+            })
+        ]).start(() => {
+            // Se ejecuta al finalizar la animación
+            setPanelVisible(false);
+        });
+    };
 
-    // Password
-    const [passwordFocused, setPasswordFocused] = React.useState(false);
-    const [passwordVisible, setPasswordVisible] = React.useState(false);
 
-    const eyeIcon = passwordVisible
-        ? passwordFocused ? "EyeOpenBlue" : "EyeOpenGray"
-        : passwordFocused ? "EyeCloseBlue" : "EyeCloseGray";
+
+    // Modulos independientes de mostrar contraseñas
+    //Iniciar Sesion
+    const [loginPasswordFocused, setLoginPasswordFocused] = React.useState(false);
+    const [loginPasswordVisible, setLoginPasswordVisible] = React.useState(false);
+
+    const eyeIconLogin = loginPasswordVisible
+    ? loginPasswordFocused ? "EyeOpenBlue" : "EyeOpenGray"
+    : loginPasswordFocused ? "EyeCloseBlue" : "EyeCloseGray";
+    // Crear cuenta contraseña
+    const [signupPassword1Focused, setSignupPassword1Focused] = React.useState(false);
+    const [signupPassword1Visible, setSignupPassword1Visible] = React.useState(false);
+
+    const eyeIconSignup1 = signupPassword1Visible
+    ? signupPassword1Focused ? "EyeOpenBlue" : "EyeOpenGray"
+    : signupPassword1Focused ? "EyeCloseBlue" : "EyeCloseGray";
+    // Crear cuenta confirmar contraseña
+    const [signupPassword2Focused, setSignupPassword2Focused] = React.useState(false);
+    const [signupPassword2Visible, setSignupPassword2Visible] = React.useState(false);
+
+    const eyeIconSignup2 = signupPassword2Visible
+    ? signupPassword2Focused ? "EyeOpenBlue" : "EyeOpenGray"
+    : signupPassword2Focused ? "EyeCloseBlue" : "EyeCloseGray";
+
+
+
 
     // Slider
     const [activeScreen, setActiveScreen] = React.useState("login");
@@ -62,7 +99,8 @@ export default function HomeScreen() {
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 justify-center items-center px-10 bg-Fondo">
                 
-                {/* TOP CONTENT */}
+
+                {/* Screen normal */}
                 <View className="gap-10 items-center">
                     <Medicine width={230} height={230} />
                     <View className="gap-10">
@@ -72,7 +110,6 @@ export default function HomeScreen() {
                         </Text>
                     </View>
                 </View>
-
                 <View className="absolute w-4/5 bottom-40">
                     <Button 
                         text="Next"
@@ -82,16 +119,20 @@ export default function HomeScreen() {
                         onPress={subirPanel}
                     />
                 </View>
-
                 <View className="absolute top-40 flex-row gap-3 justify-center">
                     <View className="p-0.5 w-1/5 bg-Blanco border-2 border-gray-200 rounded-full"></View>
                     <View className="p-0.5 w-1/5 bg-Blanco border-2 border-gray-200 rounded-full"></View>
                     <View className="p-0.5 w-1/5 bg-Primario rounded-full"></View>
                 </View>
-
                 <Pressable className="absolute top-24 left-5" onPress={() => router.back()}>
                     <Icon tipo="BackGray" size={30} />
                 </Pressable>
+
+
+
+
+
+
 
                 {panelVisible ? (
                     <Animated.View
@@ -125,10 +166,20 @@ export default function HomeScreen() {
                         elevation: 5,
                     }}
                 >
+
+                    { /* Close */}
+                    <Pressable className="absolute right-10 top-10" onPress={bajarPanel}>
+                            <Icon tipo="CloseGray" size={30}/>
+                    </Pressable>
+
+
                     <View className="items-center mt-20 gap-5">
                         <Text className="font-vs-medium text-3xl">
                             {activeScreen === "login" ? "Iniciar Sesion" : "Registarse"}
                         </Text>
+
+
+
 
                         {/* ---- SLIDER ---- */}
                         <View className=" mt-5 mb-2 flex-row bg-GrisMuyClaro w-[300px] rounded-full overflow-hidden items-center border-Primario border-2 m-0 p-0">
@@ -145,8 +196,7 @@ export default function HomeScreen() {
                             />
                             <Pressable
                                 onPress={() => moveSlider("login")}
-                                className="w-[150px] h-10 justify-center items-center"
-                            >
+                                className="w-[150px] h-10 justify-center items-center">
                                 <Text className={`text-lg ${activeScreen === "login" ? "text-white font font-vs-semibold" : "text-black"}`}>
                                     Iniciar Sesion
                                 </Text>
@@ -154,16 +204,16 @@ export default function HomeScreen() {
 
                             <Pressable
                                 onPress={() => moveSlider("signup")}
-                                className="w-[150px] h-10 justify-center items-center"
-                            >
+                                className="w-[150px] h-10 justify-center items-center">
                                 <Text className={`text-lg ${activeScreen === "signup" ? "text-white font-vs-semibold" : "text-black"}`}>
                                     Registrarse
                                 </Text>
                             </Pressable>
                         </View>
                         {/* ---- END SLIDER ---- */}
-
                         <View className="w-full h-[1px] bg-gray-300 my-3" />
+
+
 
                         {/* LOGIN FORM */}
                         {activeScreen === "login" && (
@@ -172,24 +222,26 @@ export default function HomeScreen() {
                                 
                                 <View className="w-11/12">
                                 {/* @ts-ignore */}
-                                    <InputCustom placeholder="Email" icon="MailGray" iconfocused="MailBlue" />
+                                    <InputCustom 
+                                        placeholder="Email" 
+                                        icon="MailGray" 
+                                        iconfocused="MailBlue" 
+                                        />
                                 </View>
-
                                 <View>
                                     <View className="w-11/12">
                                         <InputCustom
                                             placeholder="Contraseña"
                                             icon="SecureGray"
                                             iconfocused="SecureBlue"
-                                            secureTextEntry={!passwordVisible}
-                                            onFocusChange={setPasswordFocused}
+                                            secureTextEntry={!loginPasswordVisible}
+                                            onFocusChange={setLoginPasswordFocused}
                                         />
                                     </View>
                                     <Pressable
-                                        className="absolute right-10 top-4"
-                                        onPress={() => setPasswordVisible(!passwordVisible)}
-                                    >
-                                        <Icon tipo={eyeIcon} size={35} />
+                                        className="absolute right-10 top-5"
+                                        onPress={() => setLoginPasswordVisible(!loginPasswordVisible)}>
+                                        <Icon tipo={eyeIconLogin} size={25} />
                                     </Pressable>
                                 </View>
 
@@ -208,27 +260,46 @@ export default function HomeScreen() {
                         {/* SIGN UP FORM */}
                         {activeScreen === "signup" && (
                             <>
+
                                 <View className="w-11/12">
                                     {/* @ts-ignore */}
-                                    <InputCustom placeholder="Email" icon="MailGray" iconfocused="MailBlue" />
-                                </View>
-                                <View className="w-11/12">
-                                    {/* @ts-ignore */}
-                                    <InputCustom
-                                        placeholder="Contraseña"
-                                        icon="SecureGray"
-                                        iconfocused="SecureBlue"
-                                        secureTextEntry={!passwordVisible}
+                                    <InputCustom 
+                                    placeholder="Email" 
+                                    icon="MailGray" 
+                                    iconfocused="MailBlue" 
                                     />
                                 </View>
-                                <View className="w-11/12">
-                                    {/* @ts-ignore */}
-                                    <InputCustom
-                                        placeholder="Confirmar Contraseña"
-                                        icon="SecureGray"
-                                        iconfocused="SecureBlue"
-                                        secureTextEntry={!passwordVisible}
-                                    />
+                                <View>
+                                    <View className="w-11/12">
+                                        <InputCustom
+                                            placeholder="Contraseña"
+                                            icon="SecureGray"
+                                            iconfocused="SecureBlue"
+                                            secureTextEntry={!signupPassword1Visible}
+                                            onFocusChange={setSignupPassword1Focused}
+                                        />
+                                    </View>
+                                    <Pressable
+                                        className="absolute right-10 top-5"
+                                        onPress={() => setSignupPassword1Visible(!signupPassword1Visible)}>
+                                        <Icon tipo={eyeIconSignup1} size={25} />
+                                    </Pressable>
+                                </View>
+                                <View>
+                                    <View className="w-11/12">
+                                        <InputCustom
+                                            placeholder="Contraseña"
+                                            icon="SecureGray"
+                                            iconfocused="SecureBlue"
+                                            secureTextEntry={!signupPassword2Visible}
+                                            onFocusChange={setSignupPassword2Focused}
+                                        />
+                                    </View>
+                                    <Pressable
+                                        className="absolute right-10 top-5"
+                                        onPress={() => setSignupPassword2Visible(!signupPassword2Visible)}>
+                                        <Icon tipo={eyeIconSignup2} size={25} />
+                                    </Pressable>
                                 </View>
 
                                 <View className="w-3/4 mt-10">

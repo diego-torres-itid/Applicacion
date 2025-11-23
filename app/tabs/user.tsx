@@ -7,7 +7,7 @@ export default function HomeScreen() {
         <SafeAreaProvider>
         <SafeAreaView className="flex-1">
             <View className="flex-1 justify-end">
-                <Nav screenActual="alarma" />
+                <Nav screenActual="user" />
             </View>
         </SafeAreaView>
         </SafeAreaProvider>

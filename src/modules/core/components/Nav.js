@@ -1,30 +1,38 @@
 import "@/global.css";
+import { useRouter } from "expo-router";
 import * as React from "react";
 import { Pressable, View } from "react-native";
 import Icon from './Icons';
-export default function Nav(){
-    const [selected, setSelected] = React.useState("Home"); 
+export default function Nav({ screenActual = "home" }){
+    const router = useRouter();
+
+    const irA = (ruta) => {
+        if(screenActual === ruta) {
+            return;
+        }
+        router.push(`/tabs/${ruta}`);
+    };
 
 	return (
         <View>
-            <View className="bg-gray-800 h-4 border rounded-t-lg"></View>
-            <View className="flex-row justify-evenly py-4 items-center">
-                <Pressable onPress={() => setSelected("Home")}>
-                    <Icon tipo="Home" relleno={selected === "Home" ? "Lleno" : "Vacio"} color="Negro"/>
+            <View className="bg-GrisOscuro h-0.5 border-none rounded-t-lg"></View>
+            <View className="flex-row justify-evenly py-4 items-center bg-Blanco">
+                <Pressable onPress={() => irA("home")}>
+                    <Icon tipo="Home" relleno={screenActual === "home" ? "Lleno" : "Vacio"} color="Negro" size={25}/>
                 </Pressable>
-                <Pressable onPress={() => setSelected("Clock")}>
-                    <Icon tipo="Clock" relleno={selected === "Clock" ? "Lleno" : "Vacio"} color="Negro" size={38}/>
+                <Pressable onPress={() => irA("alarma")}>
+                    <Icon tipo="Clock" relleno={screenActual === "alarma" ? "Lleno" : "Vacio"} color="Negro" size={22}/>
                 </Pressable>
-                <Pressable onPress={() => setSelected("Chat")}>
-                    <View className="bg-gray-800 rounded-full p-3">
-                        <Icon tipo="Chat" relleno={selected === "Chat" ? "Lleno" : "Vacio"} color="Blanco"/>
+                <Pressable onPress={() => irA("chat")}>
+                    <View className="bg-GrisOscuro rounded-full p-2">
+                        <Icon tipo="Chat" relleno={screenActual === "chat" ? "Lleno" : "Vacio"} color="Blanco" size={25}/>
                     </View>
                 </Pressable>
-                <Pressable onPress={() => setSelected("Book")}>
-                    <Icon tipo="Book" relleno={selected === "Book" ? "Lleno" : "Vacio"} color="Negro"/>
+                <Pressable onPress={() => irA("book")}>
+                    <Icon tipo="Book" relleno={screenActual === "book" ? "Lleno" : "Vacio"} color="Negro" size={25}/>
                 </Pressable>
-                <Pressable onPress={() => setSelected("User")}>
-                    <Icon tipo="User" relleno={selected === "User" ? "Lleno" : "Vacio"} color="Negro"/>
+                <Pressable onPress={() => irA("user")}>
+                    <Icon tipo="User" relleno={screenActual === "user" ? "Lleno" : "Vacio"} color="Negro" size={25}/>
                 </Pressable>
             </View>
         </View>

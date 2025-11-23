@@ -13,7 +13,7 @@ export default function Header({ tipo = "Default"}){
                     </View>
                 );
 
-            case "Home":
+            case "Default":
                 return (
                     <View className="flex-row items-center gap-3">
                         <View className="bg-GrisOscuro rounded-full p-2">
@@ -23,7 +23,7 @@ export default function Header({ tipo = "Default"}){
                     </View>
                 );
 
-            case "Default":
+            case "Home":
                 return (
                     <View className="flex-row items-center gap-3">
                         <View className="bg-GrisOscuro rounded-full p-2">

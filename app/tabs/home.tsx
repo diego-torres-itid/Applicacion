@@ -1,5 +1,6 @@
 import "@/global.css";
 import Card from '@/src/modules/core/components/Card';
+import Header from '@/src/modules/core/components/Header';
 import Icon from '@/src/modules/core/components/Icons';
 import Nav from '@/src/modules/core/components/Nav';
 import React, { useState } from "react";
@@ -28,58 +29,48 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex-1 bg-Fondo">
-        <View className="flex-1">
+      <SafeAreaView className="flex-1 bg-Blanco">
+        <View className="flex-1 bg-Fondo">
+          <View>
+            <Header />
 
-          {/*Bienvenido*/}
-          <View className="flex-row items-center pt-10 px-10 justify-between">
-            <View className="flex-row items-center gap-3">
-              <Icon tipo="UserGray" />
-              <Text className="font-vs-semiboldtext text-xl">Bienvenido (Nombre)</Text>
+            {/* Project */}
+            <View className="flex-row justify-between mt-10 px-10 items-center">
+              <Text className="font-vs-bold text-3xl">Project</Text>
+              <Pressable>
+                <Text className="font-vs-light text-lg">All Task</Text>
+              </Pressable>
             </View>
-            <View className="flex-row gap-2">
-              <Icon tipo="Notification" size={25}/>
-              <Icon tipo="Config" size={25}/>
+
+            {/* Carrusel */}
+            <View className="h-[280px]">
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                snapToInterval={screenWidth * 0.6}
+                decelerationRate={0.2} // <--- entre 0 y 1, más pequeño = más lento
+                onScroll={handleScroll}
+                scrollEventThrottle={16}
+                contentContainerStyle={{
+                  paddingHorizontal: (screenWidth - screenWidth * 0.8) / 2,
+                  paddingRight: (screenWidth - screenWidth * 0.6) / 2, 
+                  alignItems: "flex-end", // 👈 todas las cards pegadas abajo     // espacio extra para última card
+                }}>
+                  {data.map((item, index) => (
+                    <Card
+                      key={index}
+                      Icono={item.Icono}
+                      Titulo={item.Titulo}
+                      Descripcion={item.Descripcion}
+                      isActive={activeIndex === index} // <- detecta si es el del medio
+                      />
+                  ))}
+              </ScrollView>
             </View>
           </View>
 
-          {/* Project */}
-          <View className="flex-row justify-between mt-10 px-10 items-center">
-            <Text className="font-vs-bold text-3xl">Project</Text>
-            <Pressable>
-              <Text className="font-vs-light text-lg">All Task</Text>
-            </Pressable>
-          </View>
-
-          {/* Carrusel */}
-          <View className="h-[280px]">
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              snapToInterval={screenWidth * 0.6}
-              decelerationRate={0.2} // <--- entre 0 y 1, más pequeño = más lento
-              onScroll={handleScroll}
-              scrollEventThrottle={16}
-              contentContainerStyle={{
-                paddingHorizontal: (screenWidth - screenWidth * 0.8) / 2,
-                paddingRight: (screenWidth - screenWidth * 0.6) / 2, 
-                alignItems: "flex-end", // 👈 todas las cards pegadas abajo     // espacio extra para última card
-              }}>
-                {data.map((item, index) => (
-                  <Card
-                    key={index}
-                    Icono={item.Icono}
-                    Titulo={item.Titulo}
-                    Descripcion={item.Descripcion}
-                    isActive={activeIndex === index} // <- detecta si es el del medio
-                    />
-                ))}
-            </ScrollView>
-          </View>
-        </View>
-
-        {/* Tasks */}
-          <View className="flex-row justify-between mt-48 px-10 items-center ">
+          {/* Tasks */}
+          <View className="flex-row justify-between  mt-10 px-10 items-center ">
             <Text className="font-vs-bold text-3xl">Tasks</Text>
             <Pressable>
               <Text className="font-vs-light text-lg">View All</Text>
@@ -103,10 +94,8 @@ export default function HomeScreen() {
               <Icon tipo="SecureGray" size={30} />
             </View>
           </View>
-
-
-
-        <View className="flex-1 justify-end">
+        </View> 
+        <View className="justify-end">
           <Nav screenActual="home" />
         </View>
       </SafeAreaView>

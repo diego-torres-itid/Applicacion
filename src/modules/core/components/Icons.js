@@ -29,31 +29,60 @@ import UserOutlineWhite from "../../../assets/icons/user/user-outline-white.svg"
 // USEFUL
 import BackBlack from "../../../assets/icons/back-black.svg";
 import BackGray from "../../../assets/icons/back-gray.svg";
+import CalendarBlue from "../../../assets/icons/calendar-blue.svg";
 import CalendarGray from "../../../assets/icons/calendar-gray.svg";
 import CloseBlack from "../../../assets/icons/close-black.svg";
 import CloseGray from "../../../assets/icons/close-gray.svg";
-import EyeCloseGray from "../../../assets/icons/eye-close-gray.svg";
-import EyeOpenGray from "../../../assets/icons/eye-open-gray.svg";
-import MailGray from "../../../assets/icons/mail-gray.svg";
-import NextBlack from "../../../assets/icons/next-black.svg";
-import NextGray from "../../../assets/icons/next-gray.svg";
-import SecureGray from "../../../assets/icons/secure-gray.svg";
-import UserBlue from "../../../assets/icons/user-blue.svg";
-import UserGray from "../../../assets/icons/user-gray.svg";
-
-import CalendarBlue from "../../../assets/icons/calendar-blue.svg";
 import Config from "../../../assets/icons/config.svg";
 import DownBlue from "../../../assets/icons/down-blue.svg";
 import DownGray from "../../../assets/icons/down-gray.svg";
 import EyeCloseBlue from "../../../assets/icons/eye-close-blue.svg";
+import EyeCloseGray from "../../../assets/icons/eye-close-gray.svg";
 import EyeOpenBlue from "../../../assets/icons/eye-open-blue.svg";
+import EyeOpenGray from "../../../assets/icons/eye-open-gray.svg";
 import HearthRate from "../../../assets/icons/heartrate.svg";
 import MailBlue from "../../../assets/icons/mail-blue.svg";
+import MailGray from "../../../assets/icons/mail-gray.svg";
+import NextBlack from "../../../assets/icons/next-black.svg";
+import NextGray from "../../../assets/icons/next-gray.svg";
 import Notification from "../../../assets/icons/notification.svg";
 import Search from "../../../assets/icons/search.svg";
 import SecureBlue from "../../../assets/icons/secure-blue.svg";
+import SecureGray from "../../../assets/icons/secure-gray.svg";
 import UpBlue from "../../../assets/icons/up-blue.svg";
 import UpGray from "../../../assets/icons/up-gray.svg";
+import UserBlue from "../../../assets/icons/user-blue.svg";
+import UserGray from "../../../assets/icons/user-gray.svg";
+
+import TreePoint from "../../../assets/icons/3puntos.svg";
+import Alergias from "../../../assets/icons/alergias.svg";
+import Comunidad from "../../../assets/icons/comunidad.svg";
+import ConfigBlue from "../../../assets/icons/config-blue.svg";
+import Contacts from "../../../assets/icons/contacts.svg";
+import DeleteGray from "../../../assets/icons/delete-gray.svg";
+import DeleteRed from "../../../assets/icons/delete-red.svg";
+import EditUser from "../../../assets/icons/edit-user.svg";
+import Estetoscopio from "../../../assets/icons/estetoscopio.svg";
+import Icons8 from "../../../assets/icons/icons8.svg";
+import Industria from "../../../assets/icons/industria.svg";
+import Info from "../../../assets/icons/info.svg";
+import Jeringa from "../../../assets/icons/jeringa.svg";
+import Like from "../../../assets/icons/like.svg";
+import Mancuerna from "../../../assets/icons/mancuerna.svg";
+import Medicina from "../../../assets/icons/mediciine.svg";
+import MicFillBlue from "../../../assets/icons/mic-fill-blue.svg";
+import MicOutlineBlack from "../../../assets/icons/mic-outline-black.svg";
+import MicOutlineBlue from "../../../assets/icons/mic-outline-blue.svg";
+import MicOutlineGray from "../../../assets/icons/mic-outline-gray.svg";
+import NotificationBlue from "../../../assets/icons/notification-blue.svg";
+import Pastilla from "../../../assets/icons/pastilla.svg";
+import Question from "../../../assets/icons/question.svg";
+import RegistroMedico from "../../../assets/icons/registromedico.svg";
+import Regla from "../../../assets/icons/regla.svg";
+import SearchBlue from "../../../assets/icons/search-blue.svg";
+import SearchGray from "../../../assets/icons/search-gray.svg";
+import Tos from "../../../assets/icons/tos.svg";
+import Virus from "../../../assets/icons/virus.svg";
 
 const iconMap = {
     Home: {
@@ -134,6 +163,35 @@ const iconMap = {
     Notification,
     Search,
     HearthRate,
+    TreePoint,
+    Alergias,
+    Comunidad,
+    ConfigBlue,
+    Contacts,
+    DeleteGray,
+    DeleteRed,
+    EditUser,
+    Estetoscopio,
+    Icons8,
+    Industria,
+    Info,
+    Jeringa,
+    Like,
+    Mancuerna,
+    Medicina,
+    MicFillBlue,
+    MicOutlineBlack,
+    MicOutlineBlue,
+    MicOutlineGray,
+    NotificationBlue,
+    Pastilla,
+    Question,
+    RegistroMedico,
+    Regla,
+    SearchBlue,
+    SearchGray,
+    Tos,
+    Virus,
 };
 
 /**

@@ -9,7 +9,7 @@ export default function HomeScreen() {
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
                 <View className="bg-Fondo flex-1">
-                    <Header />
+                    <Header tipo="Default" />
                     <View className="bg-Primario">
                         <View className="h-20 justify-center items-center">
                             <Text className="text-Blanco text-3xl font-vs-semibold">Explora tu historial médico</Text>
@@ -25,22 +25,14 @@ export default function HomeScreen() {
                             justifyContent: "center",
                             gap: 20,
                             }}>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="UserGray" Titulo="Biometricos" Texto="Altura y peso"/>
+                                <CardHistorial Icono="Contacts" Titulo="Biometricos" Texto="Altura y peso"/>
+                                <CardHistorial Icono="Comunidad" Titulo="Lazos" Texto="Antecedentes familiares"/>
+                                <CardHistorial Icono="Jeringa" Titulo="Vacunuas" Texto="Vacunas recibidas"/>
+                                <CardHistorial Icono="Icons8" Titulo="Habitos" Texto="Cosas que sueles ahcer"/>
+                                <CardHistorial Icono="Alergias" Titulo="Sintomas" Texto="Esto es lo que sientes"/>
+                                <CardHistorial Icono="RegistroMedico" Titulo="Intervenciones" Texto="Documents, ID c..."/>
+                                <CardHistorial Icono="Pastilla" Titulo="Medicamentos" Texto="Altura y peso"/>
+                                <CardHistorial Icono="Virus" Titulo="Enfermedades" Texto="Altura y peso"/>
                             </ScrollView>
                         </View>
                     </View>

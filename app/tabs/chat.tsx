@@ -8,7 +8,7 @@ export default function HomeScreen() {
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
                 <View className="flex-1 bg-Fondo">
-                    <Header />
+                    <Header  tipo="Default"/>
                 </View>
                 <View className="justify-end">
                     <Nav screenActual="chat" />

@@ -59,6 +59,7 @@ import NextGray from "../../../assets/icons/next-gray.svg";
 import NotificationBlue from "../../../assets/icons/notification-blue.svg";
 import Notification from "../../../assets/icons/notification.svg";
 import Pastilla from "../../../assets/icons/pastilla.svg";
+import Plus from "../../../assets/icons/plus.svg";
 import Question from "../../../assets/icons/question.svg";
 import RegistroMedico from "../../../assets/icons/registromedico.svg";
 import Regla from "../../../assets/icons/regla.svg";
@@ -187,6 +188,7 @@ const iconMap = {
     Tos,
     Virus,
     CalendarOutlineGray,
+    Plus,
 };
 
 /**

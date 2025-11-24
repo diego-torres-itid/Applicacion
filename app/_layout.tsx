@@ -102,6 +102,7 @@ export default function RootLayout() {
           animation: 'fade',
           animationDuration: 150,
         }}>
+          
           <Stack.Screen name="tabs/home" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/alarma" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/chat" options={{ headerShown: false }}/>

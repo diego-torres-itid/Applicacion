@@ -68,6 +68,8 @@ import SearchGray from "../../../assets/icons/search-gray.svg";
 import Search from "../../../assets/icons/search.svg";
 import SecureBlue from "../../../assets/icons/secure-blue.svg";
 import SecureGray from "../../../assets/icons/secure-gray.svg";
+import SendBlue from "../../../assets/icons/send-blue.svg";
+import Send from "../../../assets/icons/send.svg";
 import Tos from "../../../assets/icons/tos.svg";
 import UpBlue from "../../../assets/icons/up-blue.svg";
 import UpGray from "../../../assets/icons/up-gray.svg";
@@ -78,7 +80,6 @@ import UserFillWhite from "../../../assets/icons/user/user-fill-white.svg";
 import UserOutlineBlack from "../../../assets/icons/user/user-outline-black.svg";
 import UserOutlineWhite from "../../../assets/icons/user/user-outline-white.svg";
 import Virus from "../../../assets/icons/virus.svg";
-
 const iconMap = {
     Home: {
         Vacio: {
@@ -189,6 +190,8 @@ const iconMap = {
     Virus,
     CalendarOutlineGray,
     Plus,
+    SendBlue,
+    Send,
 };
 
 /**

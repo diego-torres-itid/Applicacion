@@ -7,6 +7,26 @@ import { Animated, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, 
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Registro() {
+
+    const translateY = useRef(new Animated.Value(0)).current; // empieza en 0
+
+    const closeModal = () => {
+        Animated.timing(translateY, {
+          toValue: 1000, // baja fuera de pantalla
+          duration: 500, // tiempo lento
+          useNativeDriver: true,
+        }).start(() => {
+          router.back(); // cerrar la pantalla solo después
+        });
+      };
+
+
+
+
+
+
+
+
     const router = useRouter();
     const [activeScreen, setActiveScreen] = useState("login");
 
@@ -63,11 +83,12 @@ export default function Registro() {
                         
                         <Pressable 
                             className="flex-1" 
-                            onPress={() => router.back()} // Opcional: Tocar arriba cierra o hace back
+                            onPress={closeModal} // Opcional: Tocar arriba cierra o hace back
                         />
-                        <View className="bg-Blanco rounded-t-3xl px-5 py-10 items-center w-full min-h-[80%]">
+                        <Animated.View className="bg-Blanco rounded-t-3xl px-5 py-10 items-center w-full min-h-[80%]"
+                        style={{ transform: [{ translateY }] }}>
                             
-                            <Pressable className="absolute right-10 top-10" onPress={() => router.back()}>
+                            <Pressable className="absolute right-10 top-10" onPress={closeModal}>
                                 <Icon tipo="CloseGray" size={30} />
                             </Pressable>
                             
@@ -175,7 +196,7 @@ export default function Registro() {
                                     </View>
                                 </>
                             )}
-                        </View>
+                        </Animated.View>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </SafeAreaView>

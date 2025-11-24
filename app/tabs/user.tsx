@@ -19,8 +19,8 @@ export default function HomeScreen() {
                     <View className="px-10 py-5">
                         <Perfil mostrarDetalles={true}/>
                     </View>
-                    <View className="mx-10 rounded-3xl bg-Blanco p-10">
-                        <Text className="font-vs-semibold text-[20px] pb-5">General</Text>
+                    <View className="mx-10 rounded-3xl bg-Blanco">
+                        <Text className="font-vs-semibold text-[20px] pb-5 px-10 pt-10">General</Text>
 
                         <SeccionPrefil Icono="EditUser" Texto="Editar perfil" onPress={Nada}/>
                         <SeccionPrefil Icono="Notification" Texto="Notificaciones" onPress={Nada}/>

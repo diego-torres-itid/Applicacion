@@ -97,7 +97,10 @@ export default function RootLayout() {
   
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
+        <Stack
+        screenOptions={{
+          animation: 'fade'
+        }}>
           <Stack.Screen name="tabs/home" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/alarma" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/chat" options={{ headerShown: false }}/>

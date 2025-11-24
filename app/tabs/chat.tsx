@@ -6,6 +6,8 @@ import MensajesList from "@/src/modules/core/components/Mensaje";
 import Nav from '@/src/modules/core/components/Nav';
 import Pre from '@/src/modules/core/components/Pre';
 import Question from "@/src/modules/core/components/Question";
+import { Keyboard } from "react-native";
+
 
 import * as React from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
@@ -13,8 +15,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const frases = [
     "Me siento mal...",
-    "Quiero más energía",
-    "Comer más sano",
+    "Me duele la cabeza",
+    "Quiero vomitar...",
     "Tengo mucho estrés"
 ];
 
@@ -25,6 +27,28 @@ type Mensaje = {
 
 
 export default function HomeScreen() {
+    const [tecladoAbierto, setTecladoAbierto] = React.useState(false);
+
+React.useEffect(() => {
+    const showSub = Keyboard.addListener("keyboardDidShow", () => {
+        setTecladoAbierto(true);
+    });
+
+    const hideSub = Keyboard.addListener("keyboardDidHide", () => {
+        setTecladoAbierto(false);
+    });
+
+    return () => {
+        showSub.remove();
+        hideSub.remove();
+    };
+}, []);
+
+
+
+    const [inputEnFoco, setInputEnFoco] = React.useState(false);
+
+
     // Estado de los mensajes
     const [mensajes, setMensajes] = React.useState([]);
 
@@ -90,24 +114,39 @@ export default function HomeScreen() {
                                     contentContainerStyle={{ gap: 16 }}
                                 >
                                     {frasesRandom.slice(0, 4).map((frase, index) => (
-                                    <Pre key={index} frase={frase} />
+                                    <Pre 
+                                    key={index} 
+                                    frase={frase} 
+                                    onPress={() => {
+                                        { /* @ts-ignore */}
+                                        setMensajes(prev => [
+                                            ...prev,
+                                            { Texto: frase, tipo: "enviado" }
+                                        ]);
+                                    }}
+                                    />
                                     ))}
                                 </ScrollView>
                             </View>
                         )}
                         {/* INPUT + NAV (SIEMPRE ABAJO) */}
                         <View>
-                            <View className="px-5 pb-2">
+                            <View className={`px-5 ${tecladoAbierto ? "pb-4" : "pb-16"} ${inputEnFoco ? "" : "mb-8"} `}>
                                 <Question
                                     value={input}
                                     onChangeText={setInput}
                                     onSend={enviarMensaje}
+                                    onFocus={() => setInputEnFoco(true)}
+                                    onBlur={() => setInputEnFoco(false)}
                                 />
                             </View>
-                            <Nav screenActual="chat" />
+                            
                         </View>
                     </View>
                 </KeyboardAvoidingView>
+                <View className="absolute bottom-4 w-full">
+                <Nav screenActual="chat" />
+                </View>
             </SafeAreaView>
         </SafeAreaProvider>
     );

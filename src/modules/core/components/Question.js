@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Pressable, TextInput, View } from "react-native";
 import Icon from "./Icons";
 
-export default function Question({ value, onChangeText, onSend }) {
+export default function Question({ value, onChangeText, onSend, onFocus, onBlur }) {
     const [focused, setFocused] = useState(false);
 
     const puedeEnviar = value.trim().length > 0;
@@ -21,8 +21,14 @@ export default function Question({ value, onChangeText, onSend }) {
                     placeholder={focused ? "" : "Pregúntale a Neurona"}
                     className="font-vs-light text-xl flex-1"
                     style={{ maxWidth: "75%" }} 
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
+                    onFocus={() => {
+                        setFocused(true);
+                        onFocus && onFocus();   // <<< notifica al padre
+                    }}
+                    onBlur={() => {
+                        setFocused(false);
+                        onBlur && onBlur();     // <<< notifica al padre
+                    }}
                     multiline={false}
                 />
             </View>

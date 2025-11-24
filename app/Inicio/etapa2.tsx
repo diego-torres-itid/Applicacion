@@ -1,9 +1,8 @@
 import "@/global.css";
 import Button from "@/src/modules/core/components/Buttons";
-import Icon from "@/src/modules/core/components/Icons";
 import { useRouter } from "expo-router";
 import * as React from "react";
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 // @ts-ignore
 import Study from "../../src/assets/images/undraw-book-writer.svg";
@@ -34,9 +33,6 @@ export default function Etapa2() {
                     <View className="p-0.5 w-1/5 bg-Blanco border-2 border-gray-200 rounded-full"></View>
                     <View className="p-0.5 w-1/5 bg-Blanco border-2 border-gray-200 rounded-full"></View>
                 </View>
-                <Pressable className="absolute top-24 left-5" onPress={() => router.back()}>
-                    <Icon tipo="BackGray" size={30} />
-                </Pressable>
             </SafeAreaView>
         </SafeAreaProvider>
     );

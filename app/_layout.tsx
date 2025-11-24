@@ -102,22 +102,26 @@ export default function RootLayout() {
           animation: 'fade',
           animationDuration: 150,
         }}>
-          
+          <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/etapa2" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/etapa3" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/etapa4" options={{ headerShown: false }}/>
+
+
           <Stack.Screen name="tabs/home" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/alarma" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/chat" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/book" options={{ headerShown: false }}/>
           <Stack.Screen name="tabs/user" options={{ headerShown: false }}/>
-          <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
-          <Stack.Screen name="Inicio/etapa2" options={{ headerShown: false }}/>
-          <Stack.Screen name="Inicio/etapa3" options={{ headerShown: false }}/>
+          
           <Stack.Screen 
-          name="Inicio/etapa4" 
-          options={{ 
-            headerShown: false,
-            presentation: 'modal', 
-          }}
-        />
+            name="Inicio/registro" 
+            options={{ 
+              headerShown: false,
+              presentation: 'transparentModal',
+              animation: 'slide_from_bottom', 
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
     </ThemeProvider>

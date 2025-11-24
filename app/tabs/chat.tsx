@@ -6,7 +6,9 @@ import MensajesList from "@/src/modules/core/components/Mensaje";
 import Nav from '@/src/modules/core/components/Nav';
 import Pre from '@/src/modules/core/components/Pre';
 import Question from "@/src/modules/core/components/Question";
+import { useChatStore } from "@/src/store/chatStore";
 import { Keyboard } from "react-native";
+
 
 
 import * as React from "react";
@@ -50,7 +52,9 @@ React.useEffect(() => {
 
 
     // Estado de los mensajes
-    const [mensajes, setMensajes] = React.useState([]);
+    const mensajes = useChatStore(state => state.mensajes);
+    const addMensaje = useChatStore(state => state.addMensaje);
+
 
     // Input del usuario
     const [input, setInput] = React.useState("");
@@ -60,14 +64,17 @@ React.useEffect(() => {
     }, []);
     // Enviar mensaje
     const enviarMensaje = () => {
-    if (!input.trim()) return;
-    // @ts-ignore
-    setMensajes(prev => [
-        ...prev,
-        { Texto: input, tipo: "enviado" }
-    ]);
-    setInput("");
-};
+        if (!input.trim()) return;
+    
+        addMensaje({
+            Texto: input,
+            tipo: "enviado",
+        });
+    
+        setInput("");
+    };
+    
+    
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
@@ -119,10 +126,10 @@ React.useEffect(() => {
                                     frase={frase} 
                                     onPress={() => {
                                         { /* @ts-ignore */}
-                                        setMensajes(prev => [
-                                            ...prev,
-                                            { Texto: frase, tipo: "enviado" }
-                                        ]);
+                                        addMensaje({
+                                            Texto: frase,   
+                                            tipo: "enviado"
+                                        });
                                     }}
                                     />
                                     ))}

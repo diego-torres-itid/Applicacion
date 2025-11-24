@@ -63,37 +63,38 @@ export default function HomeScreen() {
                                 paddingBottom: 20,
                                 ...(mensajes.length === 0 && {
                                 flex: 1,
-                                
+                                justifyContent: "center",
                             })
                             }}
                             showsVerticalScrollIndicator={false}
                         >
                             {/* NO HAY MENSAJES → LOGO + FRASES */}
                             {mensajes.length === 0 && (
-                                <>
-                                    <View className="items-center justify-center mb-10">
+                                    <View className="items-center mb-10">
                                         <Logo width={100} height={100} />
                                         <Text className="font-vs-bold text-[28px] text-Primario">Hola Name</Text>
                                         <Text className="font-vs-regular text-[24px]">Aquí estoy para ayudarte</Text>
                                         <Text className="font-vs-light text-[16px]">¿Cómo te sientes hoy?</Text>
                                     </View>
-                                    {/* Scroll horizontal dentro del scroll vertical */}
-                                    <ScrollView
-                                        horizontal
-                                        showsHorizontalScrollIndicator={false}
-                                        contentContainerStyle={{ gap: 16 }}
-                                        >
-                                        {frasesRandom.slice(0, 4).map((frase, index) => (
-                                        <Pre key={index} frase={frase} />
-                                        ))}
-                                    </ScrollView>
-                                </>
                             )}
                             {/* SÍ HAY MENSAJES → LISTA */}
                             {mensajes.length > 0 && (
                             <MensajesList mensajes={mensajes} />
                             )}
                         </ScrollView>
+                        {mensajes.length === 0 && (
+                            <View className="px-5 pb-5">
+                                <ScrollView
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                    contentContainerStyle={{ gap: 16 }}
+                                >
+                                    {frasesRandom.slice(0, 4).map((frase, index) => (
+                                    <Pre key={index} frase={frase} />
+                                    ))}
+                                </ScrollView>
+                            </View>
+                        )}
                         {/* INPUT + NAV (SIEMPRE ABAJO) */}
                         <View>
                             <View className="px-5 pb-2">

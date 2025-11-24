@@ -1,4 +1,5 @@
 import "@/global.css";
+import Logo from "@/src/assets/logo.svg";
 import * as React from "react";
 import { Text, View } from "react-native";
 import Icon from './Icons';
@@ -32,6 +33,16 @@ export default function Header({ tipo = "Default"}){
                         <View>
                             <Text className="font-vs-extralighttext text-sm">Bienvenido de nuevo,</Text>
                             <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">Name Lastname</Text>
+                        </View>
+                    </View>
+                );
+            
+            case "Chat":
+                return (
+                    <View className="flex-row items-center gap-5">
+                        <Logo width={40} height={40} />
+                        <View>
+                            <Text className="font-vs-semibold text-[20px]">Neurona</Text>
                         </View>
                     </View>
                 );

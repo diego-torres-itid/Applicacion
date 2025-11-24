@@ -7,8 +7,8 @@ import React, { useState } from "react";
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function HomeScreen() {
-    const [selected, setSelected] = useState("all");
-    const botones = ["all", "Malestar", "Entorno", "Otro"];
+    const [selected, setSelected] = useState("Todo");
+    const botones = ["Todo", "Malestar", "Entorno", "Otro"];
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">

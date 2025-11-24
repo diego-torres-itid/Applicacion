@@ -1,7 +1,7 @@
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack } from 'expo-router'; // <----------------------------- Esta para modal, creo xd
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -110,7 +110,13 @@ export default function RootLayout() {
           <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa2" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa3" options={{ headerShown: false }}/>
-          <Stack.Screen name="Inicio/etapa4" options={{ headerShown: false }}/>
+          <Stack.Screen 
+          name="Inicio/etapa4" 
+          options={{ 
+            headerShown: false,
+            presentation: 'modal', 
+          }}
+        />
         </Stack>
         <StatusBar style="auto" />
     </ThemeProvider>

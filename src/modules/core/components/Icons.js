@@ -56,6 +56,7 @@ import UserGray from "../../../assets/icons/user-gray.svg";
 
 import TreePoint from "../../../assets/icons/3puntos.svg";
 import Alergias from "../../../assets/icons/alergias.svg";
+import CalendarOutlineGray from "../../../assets/icons/calendar-outline-gray.svg";
 import Comunidad from "../../../assets/icons/comunidad.svg";
 import ConfigBlue from "../../../assets/icons/config-blue.svg";
 import Contacts from "../../../assets/icons/contacts.svg";
@@ -192,6 +193,7 @@ const iconMap = {
     SearchGray,
     Tos,
     Virus,
+    CalendarOutlineGray,
 };
 
 /**

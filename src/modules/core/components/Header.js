@@ -8,7 +8,7 @@ export default function Header({ tipo = "Default"}){
         switch (tipo) {
             case "Perfil":
                 return (
-                    <View className="py-3">
+                    <View>
                         <Text className="font-vs-semiboldtext text-2xl">Perfil</Text>
                     </View>
                 );
@@ -44,9 +44,9 @@ export default function Header({ tipo = "Default"}){
     return(
         <View className="flex-row items-center py-5 px-10 justify-between bg-Blanco">
             {renderContenido()}
-            <View className="flex-row gap-2">
-                <Icon tipo="Notification" size={25}/>
-                <Icon tipo="Config" size={25}/>
+            <View className="flex-row gap-5">
+                <Icon tipo="Notification" size={22}/>
+                <Icon tipo="Config" size={22}/>
             </View>
         </View>
     )

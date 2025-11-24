@@ -28,8 +28,8 @@ export default function Nav({ screenActual = "home" }){
                         <Icon tipo="Chat" relleno={screenActual === "chat" ? "Lleno" : "Vacio"} color="Blanco" size={25}/>
                     </View>
                 </Pressable>
-                <Pressable onPress={() => irA("book")}>
-                    <Icon tipo="Book" relleno={screenActual === "book" ? "Lleno" : "Vacio"} color="Negro" size={25}/>
+                <Pressable onPress={() => irA("historial")}>
+                    <Icon tipo="Book" relleno={screenActual === "historial" ? "Lleno" : "Vacio"} color="Negro" size={25}/>
                 </Pressable>
                 <Pressable onPress={() => irA("user")}>
                     <Icon tipo="User" relleno={screenActual === "user" ? "Lleno" : "Vacio"} color="Negro" size={25}/>

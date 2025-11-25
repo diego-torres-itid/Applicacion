@@ -77,7 +77,7 @@ React.useEffect(() => {
     
     return (
         <SafeAreaProvider>
-            <SafeAreaView className="flex-1 bg-Fondo">
+            <SafeAreaView className="flex-1 bg-Blanco">
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}

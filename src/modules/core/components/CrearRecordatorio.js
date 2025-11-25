@@ -1,7 +1,8 @@
 import "@/global.css";
 import { useRecordatorioStore } from "@/src/store/recordatorioStore";
+import DateTimePicker from '@react-native-community/datetimepicker';
 import * as React from "react";
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Modal, Platform, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Icon from './Icons';
 
 export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }) {
@@ -16,6 +17,9 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
     const [titulo, setTitulo] = React.useState("");
     const [descripcion, setDescripcion] = React.useState("");
     const [fecha, setFecha] = React.useState("");
+    const [fechaSeleccionada, setFechaSeleccionada] = React.useState(new Date());
+    const [mostrarDatePicker, setMostrarDatePicker] = React.useState(false);
+    const [mostrarTimePicker, setMostrarTimePicker] = React.useState(false);
 
     // 🔥 Asignar icono dependiendo del tipo
     const getIconoByTipo = () => {
@@ -30,6 +34,32 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
         }
     };
 
+    // 🔥 Formatear fecha para mostrar
+    const formatearFecha = (fecha) => {
+        try {
+            const fechaObj = new Date(fecha);
+            if (isNaN(fechaObj.getTime())) {
+                return "";
+            }
+            
+            const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+            const dia = fechaObj.getDate();
+            const mes = meses[fechaObj.getMonth()];
+            
+            let horas = fechaObj.getHours();
+            const minutos = fechaObj.getMinutes().toString().padStart(2, '0');
+            const ampm = horas >= 12 ? 'pm' : 'am';
+            
+            horas = horas % 12;
+            horas = horas ? horas : 12; // la hora '0' debe ser '12'
+            
+            return `${dia} ${mes}, ${horas}:${minutos}${ampm}`;
+        } catch (error) {
+            console.log("Error formateando fecha:", error);
+            return "";
+        }
+    };
+
     // 🔥 Efecto para manejar la edición
     React.useEffect(() => {
         if (recordatorioEditar) {
@@ -39,29 +69,112 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
             setDescripcion(recordatorioEditar.Texto || "");
             setFecha(recordatorioEditar.Fecha || "");
             setIndiceEdicion(recordatorioEditar.index);
+            
+            // Si hay fecha existente, intentar parsearla
+            if (recordatorioEditar.Fecha) {
+                try {
+                    // Intentar parsear la fecha existente
+                    const fechaParseada = new Date(recordatorioEditar.Fecha);
+                    if (!isNaN(fechaParseada.getTime())) {
+                        setFechaSeleccionada(fechaParseada);
+                    }
+                } catch (error) {
+                    console.log("Error parseando fecha existente:", error);
+                }
+            }
         }
     }, [recordatorioEditar]);
 
+    // 🔥 Manejar cambio de fecha
+    const onChangeFecha = (event, selectedDate) => {
+        setMostrarDatePicker(false);
+        if (selectedDate) {
+            const nuevaFecha = new Date(selectedDate);
+            // Mantener la hora actual al cambiar solo la fecha
+            nuevaFecha.setHours(fechaSeleccionada.getHours());
+            nuevaFecha.setMinutes(fechaSeleccionada.getMinutes());
+            
+            setFechaSeleccionada(nuevaFecha);
+            const fechaFormateada = formatearFecha(nuevaFecha);
+            setFecha(fechaFormateada);
+            console.log("Fecha seleccionada:", fechaFormateada);
+        }
+    };
+
+    // 🔥 Manejar cambio de hora
+    const onChangeHora = (event, selectedTime) => {
+        setMostrarTimePicker(false);
+        if (selectedTime) {
+            // Combinar la fecha actual con la nueva hora
+            const nuevaFecha = new Date(fechaSeleccionada);
+            nuevaFecha.setHours(selectedTime.getHours());
+            nuevaFecha.setMinutes(selectedTime.getMinutes());
+            
+            setFechaSeleccionada(nuevaFecha);
+            const fechaFormateada = formatearFecha(nuevaFecha);
+            setFecha(fechaFormateada);
+            console.log("Hora seleccionada:", fechaFormateada);
+        }
+    };
+
+    // 🔥 Mostrar selector de fecha
+    const mostrarSelectorFecha = () => {
+        setMostrarDatePicker(true);
+    };
+
+    // 🔥 Mostrar selector de hora
+    const mostrarSelectorHora = () => {
+        setMostrarTimePicker(true);
+    };
+
     const crear = () => {
-        if (!titulo || !descripcion || !fecha) return;
+        console.log("Creando recordatorio...");
+        console.log("Título:", titulo);
+        console.log("Descripción:", descripcion);
+        console.log("Fecha formateada:", fecha);
+        console.log("Fecha completa:", fechaSeleccionada);
+
+        // Validar campos
+        if (!titulo.trim()) {
+            Alert.alert("Error", "Por favor ingresa un título");
+            return;
+        }
+        if (!descripcion.trim()) {
+            Alert.alert("Error", "Por favor ingresa una descripción");
+            return;
+        }
+        if (!fecha.trim()) {
+            Alert.alert("Error", "Por favor selecciona una fecha y hora");
+            return;
+        }
 
         const nuevoRecordatorio = {
             Icono: getIconoByTipo(),
-            Titulo: titulo,
-            Texto: descripcion,
+            Titulo: titulo.trim(),
+            Texto: descripcion.trim(),
             Fecha: fecha,
+            FechaCompleta: fechaSeleccionada.toISOString(),
             Restante: "(--)"
         };
 
-        if (esEdicion) {
-            // 🔥 Actualizar recordatorio existente
-            updateRecordatorio(indiceEdicion, nuevoRecordatorio);
-        } else {
-            // 🔥 Crear nuevo recordatorio
-            addRecordatorio(nuevoRecordatorio);
-        }
+        console.log("Nuevo recordatorio:", nuevoRecordatorio);
 
-        cerrarModal();
+        try {
+            if (esEdicion) {
+                // 🔥 Actualizar recordatorio existente
+                console.log("Actualizando recordatorio en índice:", indiceEdicion);
+                updateRecordatorio(indiceEdicion, nuevoRecordatorio);
+            } else {
+                // 🔥 Crear nuevo recordatorio
+                console.log("Agregando nuevo recordatorio");
+                addRecordatorio(nuevoRecordatorio);
+            }
+            
+            cerrarModal();
+        } catch (error) {
+            console.log("Error al crear recordatorio:", error);
+            Alert.alert("Error", "No se pudo guardar el recordatorio");
+        }
     };
 
     const cerrarModal = () => {
@@ -71,6 +184,9 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
         setTitulo("");
         setDescripcion("");
         setFecha("");
+        setFechaSeleccionada(new Date());
+        setMostrarDatePicker(false);
+        setMostrarTimePicker(false);
         
         // 🔥 Si se pasó onClose (para edición), ejecutarlo
         if (onClose) {
@@ -111,14 +227,60 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
                             className="border p-2 rounded"
                             value={descripcion}
                             onChangeText={setDescripcion}
+                            multiline
                         />
 
-                        <TextInput
-                            placeholder="Fecha (ej. 14 Nov, 10:00am)"
-                            className="border p-2 rounded"
-                            value={fecha}
-                            onChangeText={setFecha}
-                        />
+                        {/* Selector de Fecha y Hora */}
+                        <View className="gap-2">
+                            <Text className="font-vs-regular text-[14px]">Fecha y Hora</Text>
+                            
+                            <View className="flex-row gap-2">
+                                <TouchableOpacity 
+                                    onPress={mostrarSelectorFecha}
+                                    className="flex-1 border p-2 rounded items-center"
+                                >
+                                    <Text className="text-gray-700">
+                                        {fechaSeleccionada.toLocaleDateString('es-ES')}
+                                    </Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity 
+                                    onPress={mostrarSelectorHora}
+                                    className="flex-1 border p-2 rounded items-center"
+                                >
+                                    <Text className="text-gray-700">
+                                        {fechaSeleccionada.toLocaleTimeString('es-ES', {
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <Text className="text-xs text-gray-500 text-center">
+                                {fecha || "Selecciona fecha y hora"}
+                            </Text>
+                        </View>
+
+                        {/* Date Pickers */}
+                        {mostrarDatePicker && (
+                            <DateTimePicker
+                                value={fechaSeleccionada}
+                                mode="date"
+                                display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                                onChange={onChangeFecha}
+                                minimumDate={new Date()}
+                            />
+                        )}
+
+                        {mostrarTimePicker && (
+                            <DateTimePicker
+                                value={fechaSeleccionada}
+                                mode="time"
+                                display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                                onChange={onChangeHora}
+                            />
+                        )}
 
                         <View className="flex-row justify-between mt-4">
                             <TouchableOpacity onPress={cerrarModal}>

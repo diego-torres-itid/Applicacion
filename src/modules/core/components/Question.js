@@ -23,13 +23,13 @@ export default function Question({ value, onChangeText, onSend, onFocus, onBlur 
 
     return (
         <View
-            className="w-full bg-Blanco flex-row items-center rounded-full px-4 py-2"
-            style={{ minHeight: 50 }}
+            className="w-full bg-Blanco flex-row items-center rounded-full px-3 py-3"
+            style={{ minHeight: 40 }}
         >
 
             {/* ICONO PLUS — siempre centrado */}
             <View className="items-center justify-center mr-3">
-                <Icon tipo="Plus" size={25} />
+                <Icon tipo="Plus" size={20} />
             </View>
 
             {/* INPUT CON SCROLL INTERNO */}
@@ -85,9 +85,9 @@ export default function Question({ value, onChangeText, onSend, onFocus, onBlur 
                 className="items-center justify-center ml-3"
             >
                 {focused && puedeEnviar ? (
-                    <Icon tipo="SendBlue" size={25} />
+                    <Icon tipo="SendBlue" size={20} />
                 ) : (
-                    <Icon tipo="Send" size={25} />
+                    <Icon tipo="Send" size={20} />
                 )}
             </Pressable>
 

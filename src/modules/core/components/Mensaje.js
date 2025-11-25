@@ -6,21 +6,25 @@ const { width: screenWidth } = Dimensions.get("window");
 
 export default function MensajesList({ mensajes = [] }) {
 
-    function obtenerHoraMinutoAMPM() {
-        const ahora = new Date();
-        let horas = ahora.getHours(); // 0-23
-        const minutos = String(ahora.getMinutes()).padStart(2, "0"); // 00-59
+    function obtenerHoraMinutoAMPM(fechaHora) {
+        if (!fechaHora) return "";
+    
+        // fechaHora = "2025-11-25 05:06:19"
+        const partes = fechaHora.split(" "); // ["2025-11-25", "05:06:19"]
+        if (partes.length !== 2) return "";
+    
+        const [horaStr, minutoStr] = partes[1].split(":"); // ["05","06","19"]
+        if (!horaStr || !minutoStr) return "";
+    
+        let horas = parseInt(horaStr, 10); // 5
+        const minutos = minutoStr.padStart(2, "0"); // "06"
         const ampm = horas >= 12 ? "PM" : "AM";
+        horas = horas % 12 || 12; // convierte 0 a 12
     
-        horas = horas % 12; // convierte a formato 12 horas
-        horas = horas ? horas : 12; // si es 0, poner 12
-    
-        return `${horas}:${minutos} ${ampm}`;
+        return `${horas}:${minutos} ${ampm}`; // "5:06 AM"
     }
     
-    // Ejemplo de uso
-    const horaMinuto = obtenerHoraMinutoAMPM();
-    console.log("Hora actual:", horaMinuto); // Ej: "19:53"
+    
 
     return (
         <View className="px-5 py-2">
@@ -37,41 +41,27 @@ export default function MensajesList({ mensajes = [] }) {
                             marginTop: esMismoTipoAnterior ? 5 : 14,
                         }}
                         className={`p-3 px-6 ${
-                        msg.tipo === "enviado"
-                            ? `bg-Primario ${
-                                esMismoTipoAnterior
-                                ? "rounded-3xl"
-                                : "rounded-b-3xl rounded-tl-3xl"
-                            }`
-                                : `bg-Blanco ${
-                                esMismoTipoAnterior
-                                ? "rounded-3xl"
-                                : "rounded-b-3xl rounded-tr-3xl"
-                            }`
+                            msg.tipo === "enviado"
+                                ? `${esMismoTipoAnterior ? "bg-Primario rounded-3xl" : "bg-Primario rounded-b-3xl rounded-tl-3xl"}`
+                                : `${esMismoTipoAnterior ? "bg-Blanco rounded-3xl" : "bg-Blanco rounded-b-3xl rounded-tr-3xl"}`
                         }`}
                     >
-                        <View 
-                        className={`${
-                            msg.tipo === "enviado" ? "items-end" : "items-start"
-                            }`}>
-                        <Text
-                            className={`font-vs-regular text-[14px] ${
-                                msg.tipo === "enviado" ? "text-Blanco" : "text-Negro"
-                            }`}
-                        >
-                            {msg.Texto}
-                        </Text>
-                        </View>
-                        <View 
-                        className={`${
-                                msg.tipo === "enviado" ? "items-end" : "items-start"
-                            }`}>
+                        {/* Mensaje */}
+                        <View className={`${msg.tipo === "enviado" ? "items-end" : "items-start"}`}>
                             <Text
-                                className={`font-vs-regular text-[9px] ${
-                                    msg.tipo === "enviado" ? "text-Blanco opacity-65" : "text-Negro opacity-65"
-                                }`}
+                                className={`font-vs-regular text-[14px] ${msg.tipo === "enviado" ? "text-Blanco" : "text-Negro"}`}
                             >
-                                {horaMinuto}
+                                {msg.Texto}
+                            </Text>
+                        </View>
+
+                        {/* Hora del mensaje */}
+                        <View className={`${msg.tipo === "enviado" ? "items-end" : "items-start"}`}>
+                            <Text
+                                className={`font-vs-regular text-[9px] 
+                                    ${msg.tipo === "enviado" ? "text-Blanco opacity-65" : "text-Negro opacity-65"}`}
+                            >
+                                {obtenerHoraMinutoAMPM(msg.fecha_hora)}
                             </Text>
                         </View>
                     </View>

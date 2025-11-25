@@ -25,7 +25,6 @@ type Mensaje = {
 
 
 export default function HomeScreen() {
-    const [tecladoAbierto, setTecladoAbierto] = React.useState(false);
     const [inputEnFoco, setInputEnFoco] = React.useState(false);
 
     const mensajes = useChatStore(state => state.mensajes);
@@ -39,8 +38,8 @@ export default function HomeScreen() {
 
     // Enviar mensaje
     const enviarMensaje = async () => {
-        if (!input.trim()) return;
         const textoEnviado = input;
+        if (!textoEnviado.trim()) return;
         const ahora = new Date();
         const fechaActual = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2,'0')} ` +
                             `${String(ahora.getHours()).padStart(2,'0')}:${String(ahora.getMinutes()).padStart(2,'0')}:${String(ahora.getSeconds()).padStart(2,'0')}`;
@@ -48,6 +47,7 @@ export default function HomeScreen() {
         addMensaje({
             Texto: textoEnviado,
             tipo: "enviado",
+            fecha_hora: fechaActual,
         });
     
         setInput("");
@@ -66,12 +66,13 @@ export default function HomeScreen() {
         });
 
         const data = await response.json();
+        console.log("API:", data);
 
 
-        addMensaje({ Texto: data.respuesta, tipo: "recibido" });
+        addMensaje({ Texto: data.respuesta.mensaje, tipo: "recibido", fecha_hora: data.respuesta.fecha_hora, });
             } catch (error) {
                 console.error("Error enviando mensaje:", error);
-                addMensaje({ Texto: "Error: no se pudo enviar el mensaje", tipo: "recibido" });
+                addMensaje({ Texto: "Error: no se pudo enviar el mensaje", tipo: "recibido", fecha_hora: new Date().toISOString().slice(0,16)});
             }
         };
 
@@ -142,13 +143,7 @@ export default function HomeScreen() {
                                     <Pre 
                                     key={index} 
                                     frase={frase} 
-                                    onPress={() => {
-                                        { /* @ts-ignore */}
-                                        enviarMensaje({
-                                            Texto: frase,   
-                                            tipo: "enviado"
-                                        });
-                                    }}
+                                    onPress={() => enviarMensaje(frase)}
                                     />
                                     ))}
                                 </ScrollView>

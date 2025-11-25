@@ -13,6 +13,7 @@ import { useRecordatorioStore } from "@/src/store/recordatorioStore";
 export default function HomeScreen() {
 
     const recordatorios = useRecordatorioStore(s => s.recordatorios);
+    const deleteRecordatorio = useRecordatorioStore(s => s.deleteRecordatorio);
 
     return (
         <SafeAreaProvider>
@@ -26,13 +27,11 @@ export default function HomeScreen() {
                         <CrearRecordatorio Texto="Recordatorio" />
                         <CrearRecordatorio Texto="Consulta" />
                         <CrearRecordatorio Texto="Medicacion" />
-
                     </View>
 
                     {/* LISTA DINÁMICA */}
                     <ScrollView className="px-5 mt-10">
                         <View className="gap-4">
-                            {/* @ts-ignore */}
                             {recordatorios.map((r, index) => (
                                 <Recordatorio
                                     key={index}
@@ -41,6 +40,8 @@ export default function HomeScreen() {
                                     Texto={r.Texto}
                                     Fecha={r.Fecha}
                                     Restante={r.Restante}
+                                    onDelete={() => deleteRecordatorio(index)}
+                                    onEdit={() => console.log("editar -->", index)}
                                 />
                             ))}
                         </View>

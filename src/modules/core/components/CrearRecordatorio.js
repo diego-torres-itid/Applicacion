@@ -57,7 +57,7 @@ export default function CrearRecordatorio({ Texto }) {
             {/* MODAL */}
             <Modal visible={modalVisible} transparent animationType="fade">
                 <View className="flex-1 bg-black/40 justify-center items-center">
-                    <View className="bg-white p-6 rounded-2xl w-[80%] gap-4">
+                    <View className="bg-white p-6 rounded-2xl w-[80%] gap-7">
 
                         <Text className="font-vs-regular text-[18px] text-center">
                             Crear {Texto}

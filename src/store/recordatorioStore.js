@@ -6,5 +6,10 @@ export const useRecordatorioStore = create(set => ({
     addRecordatorio: (nuevo) =>
         set(state => ({
             recordatorios: [...state.recordatorios, nuevo]
+        })),
+
+    deleteRecordatorio: (index) =>
+        set(state => ({
+            recordatorios: state.recordatorios.filter((_, i) => i !== index)
         }))
 }));

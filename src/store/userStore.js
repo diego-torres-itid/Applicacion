@@ -4,8 +4,16 @@ import { persist } from "zustand/middleware";
 export const useUserStore = create(
   persist(
     (set) => ({
-      userId: null,
 
+
+
+      userId: "fake-user-123", // 👈 simulación
+
+      /*
+      userId: null, //Esta es la correcta
+      */
+
+      
       setUserId: (id) => set({ userId: id }),
       clearUser: () => set({ userId: null }),
     }),

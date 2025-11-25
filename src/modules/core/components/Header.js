@@ -1,9 +1,12 @@
 import "@/global.css";
 import Logo from "@/src/assets/logo.svg";
+import { useThemeStore } from "@/src/store/themeStore";
 import * as React from "react";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Icon from './Icons';
-export default function Header({ tipo = "Default"}){
+
+export default function Header({ tipo = "Default", onPress = () => {} }) {
+    const modoConsulta = useThemeStore(state => state.modoConsulta);
 
     const renderContenido = () => {
         switch (tipo) {
@@ -52,14 +55,22 @@ export default function Header({ tipo = "Default"}){
         }
     };
 
-    return(
+    return (
         <View className="flex-row items-center py-5 px-10 justify-between bg-Blanco">
             {renderContenido()}
-            <View className="flex-row gap-5">
-                <Icon tipo="Notification" size={22}/>
-                <Icon tipo="Config" size={22}/>
-            </View>
-        </View>
-    )
 
+            {tipo === "Chat" ? (
+                <Pressable onPress={onPress} className={`border-2 rounded-xl p-2 px-7 ${modoConsulta ? "border-red-400" : "border-Primario"}`}>
+                    <Text className="font-vs-lighttext">
+                        {modoConsulta ? "Salir modo consulta" : "Consulta"}
+                    </Text>
+                </Pressable>
+            ) : (
+                <View className="flex-row gap-5">
+                    <Icon tipo="Notification" size={22}/>
+                    <Icon tipo="Config" size={22}/>
+                </View>
+            )}
+        </View>
+    );
 }

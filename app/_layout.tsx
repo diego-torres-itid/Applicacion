@@ -102,8 +102,11 @@ export default function RootLayout() {
           animationDuration: 150,
         }}
         >
+          
           <Stack.Screen name="index" options={{ headerShown: false }} />
           
+
+
           <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa2" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa3" options={{ headerShown: false }}/>

@@ -7,6 +7,7 @@ import Nav from '@/src/modules/core/components/Nav';
 import Pre from '@/src/modules/core/components/Pre';
 import Question from "@/src/modules/core/components/Question";
 import { useChatStore } from "@/src/store/chatStore";
+import { useThemeStore } from "@/src/store/themeStore";
 import * as React from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -26,6 +27,11 @@ type Mensaje = {
 
 export default function HomeScreen() {
     const [inputEnFoco, setInputEnFoco] = React.useState(false);
+
+    {/* Modo consulta */}
+    const modoConsulta = useThemeStore(state => state.modoConsulta);
+    const toggleModoConsulta = useThemeStore(state => state.toggleModoConsulta);
+    
 
     const mensajes = useChatStore(state => state.mensajes);
     const addMensaje = useChatStore(state => state.addMensaje);
@@ -104,8 +110,8 @@ export default function HomeScreen() {
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
                     keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
                     >
-                    <View className="flex-1 bg-Fondo">
-                        <Header tipo="Chat" />
+                    <View className={`flex-1 ${modoConsulta ? "bg-Consulta" : "bg-Fondo"}`}>
+                        <Header tipo="Chat" onPress={toggleModoConsulta}/>
                         {/* CONTENIDO SCROLLABLE: mensajes o frases random */}
                         <ScrollView
                             className="flex-1"

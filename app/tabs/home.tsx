@@ -32,7 +32,7 @@ export default function HomeScreen() {
       <SafeAreaView className="flex-1 bg-Blanco">
         <View className="flex-1 bg-Fondo">
           <View>
-            <Header  tipo="Home"/>
+            <Header tipo="Home"/>
 
             {/* Project */}
             <View className="flex-row justify-between mt-10 px-10 items-center">

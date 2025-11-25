@@ -6,6 +6,7 @@ import { ActivityIndicator, View } from "react-native";
 export default function Index() {
   const userId = useUserStore(state => state.userId);
 
+  
   useEffect(() => {
     if (userId) {
       router.replace("/tabs/home");

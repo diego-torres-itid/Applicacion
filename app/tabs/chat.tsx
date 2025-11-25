@@ -81,7 +81,7 @@ React.useEffect(() => {
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
-                    keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+                    keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
                     >
                     <View className="flex-1 bg-Fondo">
                         <Header tipo="Chat" />
@@ -137,8 +137,8 @@ React.useEffect(() => {
                             </View>
                         )}
                         {/* INPUT + NAV (SIEMPRE ABAJO) */}
-                        <View>
-                            <View className="px-4">
+                        <View className="bg-GrisClarisimo">
+                            <View className="px-4 pb-3 pt-3">
                                 <Question
                                     value={input}
                                     onChangeText={setInput}
@@ -150,10 +150,10 @@ React.useEffect(() => {
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-            </SafeAreaView>
-            <View className="relative pb-4">
-                    <Nav screenActual="chat" />
+                <View className="relative">
+                <Nav screenActual="chat" />
                 </View>
+            </SafeAreaView>
         </SafeAreaProvider>
     );
 }

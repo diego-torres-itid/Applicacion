@@ -34,6 +34,31 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
         }
     };
 
+    // 🔥 Calcular días restantes
+    const calcularDiasRestantes = (fechaObjetivo) => {
+        const hoy = new Date();
+        const fechaObj = new Date(fechaObjetivo);
+        
+        // Resetear horas para comparar solo días
+        hoy.setHours(0, 0, 0, 0);
+        fechaObj.setHours(0, 0, 0, 0);
+        
+        const diferenciaMs = fechaObj.getTime() - hoy.getTime();
+        const diasRestantes = Math.ceil(diferenciaMs / (1000 * 60 * 60 * 24));
+        
+        if (diasRestantes === 0) {
+            return "Hoy";
+        } else if (diasRestantes === 1) {
+            return "Mañana";
+        } else if (diasRestantes > 1) {
+            return `En ${diasRestantes} días`;
+        } else if (diasRestantes === -1) {
+            return "Ayer";
+        } else {
+            return `Hace ${Math.abs(diasRestantes)} días`;
+        }
+    };
+
     // 🔥 Formatear fecha para mostrar
     const formatearFecha = (fecha) => {
         try {
@@ -148,13 +173,17 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
             return;
         }
 
+        // Calcular días restantes
+        const diasRestantes = calcularDiasRestantes(fechaSeleccionada);
+        console.log("Días restantes calculados:", diasRestantes);
+
         const nuevoRecordatorio = {
             Icono: getIconoByTipo(),
             Titulo: titulo.trim(),
             Texto: descripcion.trim(),
             Fecha: fecha,
             FechaCompleta: fechaSeleccionada.toISOString(),
-            Restante: "(--)"
+            Restante: diasRestantes // 🔥 Aquí agregamos los días restantes
         };
 
         console.log("Nuevo recordatorio:", nuevoRecordatorio);
@@ -260,6 +289,13 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
                             <Text className="text-xs text-gray-500 text-center">
                                 {fecha || "Selecciona fecha y hora"}
                             </Text>
+                            
+                            {/* Muestra los días restantes en tiempo real */}
+                            {fecha && (
+                                <Text className="text-xs text-blue-600 text-center font-vs-regular">
+                                    {calcularDiasRestantes(fechaSeleccionada)}
+                                </Text>
+                            )}
                         </View>
 
                         {/* Date Pickers */}

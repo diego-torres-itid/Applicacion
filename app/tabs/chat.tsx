@@ -77,7 +77,7 @@ React.useEffect(() => {
     
     return (
         <SafeAreaProvider>
-            <SafeAreaView className="flex-1 bg-Blanco">
+            <SafeAreaView className="flex-1 bg-Fondo">
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -138,7 +138,7 @@ React.useEffect(() => {
                         )}
                         {/* INPUT + NAV (SIEMPRE ABAJO) */}
                         <View>
-                            <View className="px-4 mb-2">
+                            <View className="px-4">
                                 <Question
                                     value={input}
                                     onChangeText={setInput}
@@ -146,21 +146,14 @@ React.useEffect(() => {
                                     onFocus={() => setInputEnFoco(true)}
                                     onBlur={() => setInputEnFoco(false)}
                                 />
-                                {inputEnFoco  && !tecladoAbierto && (
-                                    <View className="h-12 bg-transparent"></View>
-                                )}
-                                {!inputEnFoco  && !tecladoAbierto && (
-                                    <View className="h-24 bg-transparent"></View>
-                                )}
                             </View>
-                            
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-                <View className="absolute bottom-4 w-full">
-                <Nav screenActual="chat" />
-                </View>
             </SafeAreaView>
+            <View className="relative pb-4">
+                    <Nav screenActual="chat" />
+                </View>
         </SafeAreaProvider>
     );
 }

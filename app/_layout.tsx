@@ -1,7 +1,8 @@
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useUserStore } from "@/src/store/userStore";
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router'; // <----------------------------- Esta para modal, creo xd
+import { router, Stack } from 'expo-router'; // <----------------------------- Esta para modal, creo xd
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -10,7 +11,7 @@ import '../global.css';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-
+  const userId = useUserStore(state => state.userId);
   const [loaded] = useFonts({
     //BLACK
 
@@ -95,14 +96,24 @@ export default function RootLayout() {
     return null;
   }
   
+  useEffect(() => {
+    if (userId) {
+      router.replace("/tabs/home");
+    } else {
+      router.replace("/Inicio/etapa1");
+    }
+  }, [userId]);
+
+
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack
         screenOptions={{
           animation: 'fade',
           animationDuration: 150,
-        }}>
-          
+        }}
+        >
           
           
           <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>

@@ -1,6 +1,7 @@
 import Button from "@/src/modules/core/components/Buttons";
 import Icon from "@/src/modules/core/components/Icons";
 import InputCustom from "@/src/modules/core/components/Input";
+import { useUserStore } from "@/src/store/userStore";
 import { useRouter } from "expo-router";
 import React, { useRef, useState } from "react";
 import { Animated, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, View } from "react-native";
@@ -9,6 +10,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function Registro() {
 
 
+    {/* CREAR CUENTA */}
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
@@ -19,9 +21,51 @@ export default function Registro() {
     };
 
 
+    {/* INICIAR SESION */}
+    const [loginEmail, setLoginEmail] = React.useState("");
+    const [loginPassword, setLoginPassword] = React.useState("");
+
+    const setUserId = useUserStore.getState().setUserId;
 
 
 
+    const handleLogin = async () => {
+        if (!loginEmail || !loginPassword) {
+            alert("Por favor llena todos los campos");
+            return;
+        }
+    
+        try {
+            const response = await fetch("https://TU_API.com/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: loginEmail,
+                    password: loginPassword
+                })
+            });
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                alert(data.message || "Error al iniciar sesión");
+                return;
+            }
+    
+            // Guardar ID en zustand
+            setUserId(data.id);
+
+            // Ir al home
+            router.push("/tabs/home");
+        
+    
+        } catch (error) {
+            alert("Error de conexión");
+        }
+    };
+    
 
 
 
@@ -151,7 +195,13 @@ export default function Registro() {
                                 <>
                                     <View className="w-full mb-5 relative">
                                         { /* @ts-ignore */}
-                                        <InputCustom placeholder="Email" icon="MailGray" iconfocused="MailBlue" />
+                                        <InputCustom 
+                                            placeholder="Email" 
+                                            icon="MailGray" 
+                                            iconfocused="MailBlue" 
+                                            value={loginEmail}
+                                            onChangeText={setLoginEmail}
+                                        />
                                     </View>
                                     <View className="w-full mb-5 relative flex-row items-center">
                                         { /* @ts-ignore */}
@@ -170,7 +220,12 @@ export default function Registro() {
                                         </Pressable>
                                     </View>
                                     <View className="w-4/5 mt-5 items-center">
-                                        <Button text="Continuar" color="Primario" variant="Fill" textColor="Blanco" onPress={() => { }} />
+                                        <Button 
+                                            text="Continuar" 
+                                            color="Primario" 
+                                            variant="Fill" 
+                                            textColor="Blanco" 
+                                            onPress={handleLogin} />
                                     </View>
                                 </>
                             )}

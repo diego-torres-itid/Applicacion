@@ -29,6 +29,7 @@ export default function PersonasFormScreen() {
     ];
 
 
+    
 
 
 
@@ -51,7 +52,24 @@ export default function PersonasFormScreen() {
     const [mostrarFecha, setMostrarFecha] = useState(false);
     const [tipoSangre, setTipoSangre] = useState("A+");
 
+
+    const formularioInvalido =
+    !email ||
+    !password ||
+    !nombre.trim() ||
+    !primerApellido.trim() ||
+    !segundoApellido.trim() ||
+    !sexo ||
+    !tipoSangre ||
+    !fechaNacimiento;
+
     const handleGuardar = async () => {
+
+        if (formularioInvalido) {
+            alert("Por favor completa todos los campos.");
+            return;
+        }
+
 
         const data = {
             email,
@@ -74,9 +92,19 @@ export default function PersonasFormScreen() {
             });
 
             const result = await response.json();
+
+            if (!response.ok) {
             console.log("Respuesta API:", result);
+            alert(result.message || "Error al guardar los datos");
+            return;
+            }
+
+            alert("Cuenta creada correctamente.");
+            router.back();
+
         } catch (error) {
             console.error("Error enviando datos API:", error);
+            alert("Hubo un error al guardar los datos");
         }
     };
 
@@ -174,7 +202,9 @@ export default function PersonasFormScreen() {
                         textColor="Blanco" 
                         color="Primario" 
                         variant="Fill" 
-                        onPress={handleGuardar}/>
+                        disabled={formularioInvalido}
+                        onPress={handleGuardar}
+                        />
                     </View>
                 </View>
                 <Pressable className="absolute left-5 top-5" onPress={() => router.back()}>

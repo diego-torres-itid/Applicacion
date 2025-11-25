@@ -8,6 +8,7 @@ export default function Button({
     variant = "Fill",
     textColor = "Blanco",
     onPress,
+    disabled = false,
     }) {
     const bgColor = variant === "Fill" ? COLORS[color] : "Transparent";
     const borderColor = COLORS[color];

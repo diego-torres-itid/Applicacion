@@ -34,9 +34,14 @@ export default function Registro() {
             alert("Por favor llena todos los campos");
             return;
         }
+        const payload = {
+            email: loginEmail,
+            password: loginPassword
+        };
+        console.log("Mensaje enviado a API:", JSON.stringify(payload, null, 2));
     
         try {
-            const response = await fetch("https://TU_API.com/login", {
+            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/datos", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -48,6 +53,7 @@ export default function Registro() {
             });
     
             const data = await response.json();
+            console.log("Respuesta API:", data);
     
             if (!response.ok) {
                 alert(data.message || "Error al iniciar sesión");
@@ -210,6 +216,8 @@ export default function Registro() {
                                             icon="SecureGray"
                                             iconfocused="SecureBlue"
                                             secureTextEntry={!loginPasswordVisible}
+                                            value={loginPassword}
+                                            onChangeText={setLoginPassword}
                                             onFocusChange={setLoginPasswordFocused}
                                         />
                                         <Pressable

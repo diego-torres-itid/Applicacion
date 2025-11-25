@@ -1,8 +1,8 @@
 import Button from "@/src/modules/core/components/Buttons";
+import CustomDropdownPicker from '@/src/modules/core/components/CustomDropdownPicker';
 import Icon from "@/src/modules/core/components/Icons";
 import InputCustom from "@/src/modules/core/components/Input";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Picker } from "@react-native-picker/picker";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -11,6 +11,32 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function PersonasFormScreen() {
 
+
+    const opcionesSexo = [
+        { label: 'Mujer', value: 'F' },
+        { label: 'Hombre', value: 'M' },
+    ];
+    
+    const opcionesTipoSangre = [
+        { label: 'A+', value: 'A+' },
+        { label: 'A-', value: 'A-' },
+        { label: 'B+', value: 'B+' },
+        { label: 'B-', value: 'B-' },
+        { label: 'O+', value: 'O+' },
+        { label: 'O-', value: 'O-' },
+        { label: 'AB+', value: 'AB+' },
+        { label: 'AB-', value: 'AB-' },
+    ];
+
+
+
+
+
+
+
+
+
+    
     const { email, password } = useLocalSearchParams();
 
 
@@ -96,30 +122,24 @@ export default function PersonasFormScreen() {
                     {/* Sexo */}
                     <View className="flex-row justify-between items-center">
                         <View className="px-3 w-1/2">
-                            <Text className="text-[16px] mb-1">Sexo</Text>
-                            <View className="border border-gray-300 rounded-lg">
-                                <Picker selectedValue={sexo} onValueChange={setSexo}>
-                                    <Picker.Item label="Masculino" value="M" />
-                                    <Picker.Item label="Femenino" value="F" />
-                                </Picker>
-                            </View>
+                            <Text className="text-[16px] mb-1 pl-2">Sexo</Text>
+                            <CustomDropdownPicker
+                                label="Selecciona tu sexo"
+                                options={opcionesSexo}
+                                selectedValue={sexo}
+                                onValueChange={setSexo}
+                            />
                         </View>
 
                         {/* Tipo de sangre */}
                         <View className="px-3 w-1/2">
-                            <Text className="text-[16px] mb-1">Tipo de sangre</Text>
-                            <View className="border border-gray-300 rounded-lg">
-                                <Picker selectedValue={tipoSangre} onValueChange={setTipoSangre}>
-                                    <Picker.Item label="A+" value="A+" />
-                                    <Picker.Item label="A-" value="A-" />
-                                    <Picker.Item label="B+" value="B+" />
-                                    <Picker.Item label="B-" value="B-" />
-                                    <Picker.Item label="O+" value="O+" />
-                                    <Picker.Item label="O-" value="O-" />
-                                    <Picker.Item label="AB+" value="AB+" />
-                                    <Picker.Item label="AB-" value="AB-" />
-                                </Picker>
-                            </View>
+                            <Text className="text-[16px] mb-1 pl-2">Tipo de sangre</Text>
+                            <CustomDropdownPicker
+                                label="Selecciona tu tipo de sangre"
+                                options={opcionesTipoSangre}
+                                selectedValue={tipoSangre}
+                                onValueChange={setTipoSangre}
+                            />
                         </View>
                     </View>
                     {/* Fecha de nacimiento */}

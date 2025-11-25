@@ -33,8 +33,6 @@ export default function Registro() {
 
 
 
-
-
     const translateY = useRef(new Animated.Value(0)).current; // empieza en 0
 
     const closeModal = () => {

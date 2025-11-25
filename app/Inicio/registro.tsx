@@ -78,7 +78,7 @@ export default function Registro() {
                             className="flex-1" 
                             onPress={closeModal} // Opcional: Tocar arriba cierra o hace back
                         />
-                        <Animated.View className="bg-Blanco rounded-t-3xl px-5 py-10 items-center w-full min-h-[80%]"
+                        <Animated.View className="bg-Blanco rounded-t-3xl px-5 py-10 items-center w-full min-h-[87%]"
                         style={{ transform: [{ translateY }] }}>
                             
                             <Pressable className="absolute right-10 top-10" onPress={closeModal}>
@@ -116,6 +116,11 @@ export default function Registro() {
 
                             <View className="w-full h-0.5 bg-GrisClarisimo my-5 mb-10" />
 
+
+
+
+
+
                             {/* LOGIN FORM */}
                             {activeScreen === "login" && (
                                 <>
@@ -144,6 +149,12 @@ export default function Registro() {
                                     </View>
                                 </>
                             )}
+
+
+
+
+
+
 
                             {/* SIGN UP FORM */}
                             {activeScreen === "signup" && (
@@ -189,6 +200,14 @@ export default function Registro() {
                                     </View>
                                 </>
                             )}
+
+
+
+
+
+
+
+
                         </Animated.View>
                     </ScrollView>
                 </KeyboardAvoidingView>

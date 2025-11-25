@@ -1,0 +1,205 @@
+    "alarmas": """CREATE TABLE alarmas (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_medicamento INT,
+        Id_habito INT,
+        Id_consulta INT,
+        nombre VARCHAR(100),
+        descripcion TEXT,
+        fecha_hora DATETIME,
+        repetir_cada_semana TINYINT,
+        dias_semana VARCHAR(13),
+        activo TINYINT,
+        fecha_activacion DATETIME,
+        fecha_desactivacion DATETIME
+    );""",
+
+    "alergias": """CREATE TABLE alergias (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_alergia INT, -- Relacionado con catalogo_alergias
+        severidad ENUM('Leve','Moderada','Grave/Anafilaxia'),
+        fecha_deteccion DATE
+    );""",
+
+    "antecedentes_familiares": """CREATE TABLE antecedentes_familiares (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_lazo INT, -- Relacionado con catalogo_lazos_familiares
+        Id_enfermedad INT -- Relacionado con catalogo_enfermedades
+    );""",
+
+    "biometricos": """CREATE TABLE biometricos (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        peso DECIMAL(5,2),
+        altura SMALLINT, -- en cm
+        fecha DATETIME
+    );""",
+
+    "catalogo_alergias": """CREATE TABLE catalogo_alergias (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150)
+    );""",
+
+    "catalogo_enfermedades": """CREATE TABLE catalogo_enfermedades (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150),
+        es_cronica_default TINYINT
+    );""",
+
+    "catalogo_especialidades": """CREATE TABLE catalogo_especialidades (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(100)
+    );""",
+
+    "catalogo_factores": """CREATE TABLE catalogo_factores (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150)
+    );""",
+
+    "catalogo_habitos": """CREATE TABLE catalogo_habitos (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(100),
+        categoria VARCHAR(60),
+        unidad_medida VARCHAR(30),
+        direccion_mejor ENUM('MENOS_ES_MEJOR','MAS_ES_MEJOR','RANGO_MEDIO')
+    );""",
+
+    "catalogo_intervenciones": """CREATE TABLE catalogo_intervenciones (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150)
+    );""",
+
+    "catalogo_lazos_familiares": """CREATE TABLE catalogo_lazos_familiares (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(50)
+    );""",
+
+    "catalogo_medicamentos": """CREATE TABLE catalogo_medicamentos (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150)
+    );""",
+
+    "catalogo_sintomas": """CREATE TABLE catalogo_sintomas (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150)
+    );""",
+
+    "catalogo_vacunas": """CREATE TABLE catalogo_vacunas (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150)
+    );""",
+
+    "citas_medicas": """CREATE TABLE citas_medicas (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_clinica INT,
+        Id_doctor INT,
+        fecha_hora DATETIME,
+        numero_consultorio VARCHAR(10),
+        informacion_extra TEXT
+    );""",
+
+    "clinicas": """CREATE TABLE clinicas (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150),
+        direccion VARCHAR(255),
+        Tipo ENUM('Institución','Clínica','Hospital','Consultorio','Otro')
+    );""",
+
+    "consentimientos": """CREATE TABLE consentimientos (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        compartir_datos TINYINT,
+        fecha_aceptacion TIMESTAMP
+    );""",
+
+    "doctores": """CREATE TABLE doctores (
+        Id INT PRIMARY KEY,
+        nombre VARCHAR(150),
+        telefono VARCHAR(20)
+    );""",
+
+    "enfermedades": """CREATE TABLE enfermedades (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_enfermedad INT, -- Relacionado con catalogo_enfermedades
+        es_cronica TINYINT,
+        fecha_inicio DATETIME,
+        fecha_final DATE
+    );""",
+
+    "especialidades_doctores": """CREATE TABLE especialidades_doctores (
+        Id INT PRIMARY KEY,
+        Id_especialidad INT,
+        Id_doctor INT
+    );""",
+
+    "factores": """CREATE TABLE factores (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_factor INT, -- Relacionado con catalogo_factores
+        intensidad TINYINT,
+        fecha_inicio DATE,
+        fecha_fin DATE,
+        observaciones TEXT
+    );""",
+
+    "habitos": """CREATE TABLE habitos (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_habito INT, -- Relacionado con catalogo_habitos
+        cantidad DECIMAL(5,2),
+        frecuencia_veces INT,
+        frecuencia_periodo ENUM('Diaria','Semanal','Mensual','Anual'),
+        fecha_inicio DATE,
+        estado ENUM('Activo','Lo dejo','Nunca'),
+        observaciones TEXT
+    );""",
+
+    "intervenciones": """CREATE TABLE intervenciones (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_intervencion INT, -- Relacionado con catalogo_intervenciones
+        fecha DATETIME,
+        observaciones TEXT
+    );""",
+
+    "medicamentos": """CREATE TABLE medicamentos (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_medicamento INT, -- Relacionado con catalogo_medicamentos
+        unidad VARCHAR(50),
+        cantidad DECIMAL(8,2),
+        cantidad_unidad DECIMAL(8,2)
+    );""",
+
+    "personas": """CREATE TABLE personas (
+        Id INT PRIMARY KEY,
+        Id_usuario INT UNIQUE,
+        nombre VARCHAR(100),
+        primer_apellido VARCHAR(100),
+        segundo_apellido VARCHAR(100),
+        sexo ENUM('M','F'),
+        fecha_nacimiento DATE,
+        tipo_sangre VARCHAR(5)
+    );""",
+
+    "sintomas": """CREATE TABLE sintomas (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_sintoma INT, -- Ref: catalogo_sintomas
+        intensidad TINYINT,
+        fecha_inicio DATETIME,
+        fecha_final DATE,
+        observaciones TEXT,
+        is_deleted TINYINT
+    );""",
+
+    "vacunas": """CREATE TABLE vacunas (
+        Id INT PRIMARY KEY,
+        Id_persona INT,
+        Id_vacuna INT, -- Relacionado con catalogo_vacunas
+        fecha DATETIME
+    );"""

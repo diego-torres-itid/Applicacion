@@ -7,10 +7,6 @@ import Nav from '@/src/modules/core/components/Nav';
 import Pre from '@/src/modules/core/components/Pre';
 import Question from "@/src/modules/core/components/Question";
 import { useChatStore } from "@/src/store/chatStore";
-import { Keyboard } from "react-native";
-
-
-
 import * as React from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -30,51 +26,70 @@ type Mensaje = {
 
 export default function HomeScreen() {
     const [tecladoAbierto, setTecladoAbierto] = React.useState(false);
-
-React.useEffect(() => {
-    const showSub = Keyboard.addListener("keyboardDidShow", () => {
-        setTecladoAbierto(true);
-    });
-
-    const hideSub = Keyboard.addListener("keyboardDidHide", () => {
-        setTecladoAbierto(false);
-    });
-
-    return () => {
-        showSub.remove();
-        hideSub.remove();
-    };
-}, []);
-
-
-
     const [inputEnFoco, setInputEnFoco] = React.useState(false);
 
-
-    // Estado de los mensajes
     const mensajes = useChatStore(state => state.mensajes);
     const addMensaje = useChatStore(state => state.addMensaje);
 
-
-    // Input del usuario
     const [input, setInput] = React.useState("");
-    // Frases random
-    const frasesRandom = React.useMemo(() => {
-        return [...frases].sort(() => Math.random() - 0.5);
-    }, []);
+
+
+
+
+
     // Enviar mensaje
-    const enviarMensaje = () => {
+    const enviarMensaje = async () => {
         if (!input.trim()) return;
-    
+        const textoEnviado = input;
+        const fechaActual = new Date().toISOString().replace("T", " ").slice(0, 19); 
         addMensaje({
-            Texto: input,
+            Texto: textoEnviado,
             tipo: "enviado",
         });
     
         setInput("");
-    };
-    
-    
+
+    try {
+        const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ 
+                id_persona: "1",
+                pregunta_usuario: textoEnviado,
+                fecha_y_hora: fechaActual
+            }),
+        });
+
+        const data = await response.json();
+
+
+        addMensaje({ Texto: data.respuesta, tipo: "recibido" });
+            } catch (error) {
+                console.error("Error enviando mensaje:", error);
+                addMensaje({ Texto: "Error: no se pudo enviar el mensaje", tipo: "recibido" });
+            }
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+    // Frases random
+    const frasesRandom = React.useMemo(() => {
+        return [...frases].sort(() => Math.random() - 0.5);
+    }, []);
+
+
+
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
@@ -89,7 +104,7 @@ React.useEffect(() => {
                         <ScrollView
                             className="flex-1"
                             contentContainerStyle={{
-                                paddingHorizontal: 20,
+                                paddingHorizontal: 0,
                                 paddingTop: 20,
                                 paddingBottom: 20,
                                 ...(mensajes.length === 0 && {
@@ -126,7 +141,7 @@ React.useEffect(() => {
                                     frase={frase} 
                                     onPress={() => {
                                         { /* @ts-ignore */}
-                                        addMensaje({
+                                        enviarMensaje({
                                             Texto: frase,   
                                             tipo: "enviado"
                                         });
@@ -159,12 +174,6 @@ React.useEffect(() => {
                         <Nav screenActual="chat" />
                     </View>
                 )}
-
-
-
-
-
-                
             </SafeAreaView>
         </SafeAreaProvider>
     );

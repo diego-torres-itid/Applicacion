@@ -9,7 +9,7 @@ export default function Question({ value, onChangeText, onSend, onFocus, onBlur 
     const [inputHeight, setInputHeight] = useState(40);
 
     const MAX_LINES = 2.5;
-    const FONT_SIZE = 18;
+    const FONT_SIZE = 15;
     const LINE_HEIGHT = 22;
 
     const puedeEnviar = value.trim().length > 0;
@@ -23,7 +23,7 @@ export default function Question({ value, onChangeText, onSend, onFocus, onBlur 
 
     return (
         <View
-            className="w-full bg-Blanco flex-row items-center rounded-full px-3 py-3"
+            className="w-full bg-Blanco flex-row items-center rounded-full px-5 py-2"
             style={{ minHeight: 40 }}
         >
 

@@ -4,7 +4,6 @@ import { Text, TouchableOpacity, View } from "react-native";
 import Icon from './Icons';
 
 export default function Recordatorio({ Icono, Titulo, Texto, Fecha, Restante, onDelete, onEdit }) {
-
     const [menuVisible, setMenuVisible] = React.useState(false);
 
     return (
@@ -35,13 +34,19 @@ export default function Recordatorio({ Icono, Titulo, Texto, Fecha, Restante, on
             {/* Si SÍ está abierto el menú */}
             {menuVisible && (
                 <View className="flex-row w-full justify-between px-5 py-2 items-center">
-                    <TouchableOpacity onPress={onDelete}>
+                    <TouchableOpacity onPress={() => {
+                        onDelete();
+                        setMenuVisible(false);
+                    }}>
                         <Text className="text-red-600 font-vs-regular text-[18px]">
                             Eliminar
                         </Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={onEdit}>
+                    <TouchableOpacity onPress={() => {
+                        onEdit();
+                        setMenuVisible(false);
+                    }}>
                         <Text className="font-vs-regular text-[18px]">
                             Modificar
                         </Text>
@@ -53,7 +58,6 @@ export default function Recordatorio({ Icono, Titulo, Texto, Fecha, Restante, on
 
                 </View>
             )}
-
         </View>
     );
 }

@@ -9,11 +9,34 @@ import { ScrollView, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { useRecordatorioStore } from "@/src/store/recordatorioStore";
+import { useState } from 'react';
 
 export default function HomeScreen() {
-
     const recordatorios = useRecordatorioStore(s => s.recordatorios);
     const deleteRecordatorio = useRecordatorioStore(s => s.deleteRecordatorio);
+
+    // 🔥 Estado para controlar la edición
+    const [recordatorioEditar, setRecordatorioEditar] = useState(null);
+
+    const handleEdit = (index) => {
+        // 🔥 Encontrar el tipo basado en el icono
+        let tipo = "Recordatorio";
+        const icono = recordatorios[index].Icono;
+        
+        if (icono === "Estetoscopio") tipo = "Consulta";
+        if (icono === "Medicina") tipo = "Medicacion";
+        
+        // 🔥 Preparar datos para edición
+        setRecordatorioEditar({
+            ...recordatorios[index],
+            index: index,
+            tipo: tipo
+        });
+    };
+
+    const handleCloseEdicion = () => {
+        setRecordatorioEditar(null);
+    };
 
     return (
         <SafeAreaProvider>
@@ -29,9 +52,19 @@ export default function HomeScreen() {
                         <CrearRecordatorio Texto="Medicacion" />
                     </View>
 
+                    {/* 🔥 Modal de edición (si está activo) */}
+                    {recordatorioEditar && (
+                        <CrearRecordatorio 
+                            Texto={recordatorioEditar.tipo}
+                            recordatorioEditar={recordatorioEditar}
+                            onClose={handleCloseEdicion}
+                        />
+                    )}
+
                     {/* LISTA DINÁMICA */}
                     <ScrollView className="px-5 mt-10">
                         <View className="gap-4">
+                            {/* @ts-ignore */}
                             {recordatorios.map((r, index) => (
                                 <Recordatorio
                                     key={index}
@@ -41,7 +74,7 @@ export default function HomeScreen() {
                                     Fecha={r.Fecha}
                                     Restante={r.Restante}
                                     onDelete={() => deleteRecordatorio(index)}
-                                    onEdit={() => console.log("editar -->", index)}
+                                    onEdit={() => handleEdit(index)}
                                 />
                             ))}
                         </View>

@@ -11,5 +11,13 @@ export const useRecordatorioStore = create(set => ({
     deleteRecordatorio: (index) =>
         set(state => ({
             recordatorios: state.recordatorios.filter((_, i) => i !== index)
+        })),
+
+    // 🔥 NUEVA FUNCIÓN: Actualizar recordatorio
+    updateRecordatorio: (index, recordatorioActualizado) =>
+        set(state => ({
+            recordatorios: state.recordatorios.map((r, i) => 
+                i === index ? recordatorioActualizado : r
+            )
         }))
 }));

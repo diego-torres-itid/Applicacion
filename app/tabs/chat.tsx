@@ -41,7 +41,10 @@ export default function HomeScreen() {
     const enviarMensaje = async () => {
         if (!input.trim()) return;
         const textoEnviado = input;
-        const fechaActual = new Date().toISOString().replace("T", " ").slice(0, 19); 
+        const ahora = new Date();
+        const fechaActual = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2,'0')} ` +
+                            `${String(ahora.getHours()).padStart(2,'0')}:${String(ahora.getMinutes()).padStart(2,'0')}:${String(ahora.getSeconds()).padStart(2,'0')}`;
+
         addMensaje({
             Texto: textoEnviado,
             tipo: "enviado",

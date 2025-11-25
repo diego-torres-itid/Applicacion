@@ -32,13 +32,18 @@ export default function HomeScreen() {
 
     const [input, setInput] = React.useState("");
 
+    const scrollViewRef = React.useRef<ScrollView>(null);
 
-
+    React.useEffect(() => {
+        if (scrollViewRef.current) {
+            scrollViewRef.current.scrollToEnd({ animated: true });
+        }
+    }, [mensajes]);
 
 
     // Enviar mensaje
-    const enviarMensaje = async () => {
-        const textoEnviado = input;
+    const enviarMensaje = async (mensajeOpcional?: string) => {
+        const textoEnviado = mensajeOpcional ?? input;
         if (!textoEnviado.trim()) return;
         const ahora = new Date();
         const fechaActual = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2,'0')} ` +
@@ -83,10 +88,6 @@ export default function HomeScreen() {
 
 
 
-
-
-
-
     // Frases random
     const frasesRandom = React.useMemo(() => {
         return [...frases].sort(() => Math.random() - 0.5);
@@ -107,6 +108,7 @@ export default function HomeScreen() {
                         {/* CONTENIDO SCROLLABLE: mensajes o frases random */}
                         <ScrollView
                             className="flex-1"
+                            ref={scrollViewRef}
                             contentContainerStyle={{
                                 paddingHorizontal: 0,
                                 paddingTop: 20,

@@ -36,7 +36,7 @@ export default function MensajesList({ mensajes = [] }) {
                     <View
                         key={index}
                         style={{
-                            width: screenWidth * 0.7,
+                            maxWidth: screenWidth * 0.7,
                             alignSelf: msg.tipo === "enviado" ? "flex-end" : "flex-start",
                             marginTop: esMismoTipoAnterior ? 5 : 14,
                         }}
@@ -56,7 +56,7 @@ export default function MensajesList({ mensajes = [] }) {
                         </View>
 
                         {/* Hora del mensaje */}
-                        <View className={`${msg.tipo === "enviado" ? "items-end" : "items-start"}`}>
+                        <View className={`mt-2 ${msg.tipo === "enviado" ? "items-end" : "items-start"}`}>
                             <Text
                                 className={`font-vs-regular text-[9px] 
                                     ${msg.tipo === "enviado" ? "text-Blanco opacity-65" : "text-Negro opacity-65"}`}

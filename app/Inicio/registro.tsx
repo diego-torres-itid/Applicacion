@@ -12,20 +12,13 @@ export default function Registro() {
 
     const closeModal = () => {
         Animated.timing(translateY, {
-          toValue: 1000, // baja fuera de pantalla
-          duration: 500, // tiempo lento
-          useNativeDriver: true,
+            toValue: 1000, // baja fuera de pantalla
+            duration: 500, // tiempo lento
+            useNativeDriver: true,
         }).start(() => {
-          router.back(); // cerrar la pantalla solo después
+            router.back(); // cerrar la pantalla solo después
         });
-      };
-
-
-
-
-
-
-
+    };
 
     const router = useRouter();
     const [activeScreen, setActiveScreen] = useState("login");

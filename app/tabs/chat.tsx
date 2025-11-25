@@ -138,7 +138,7 @@ React.useEffect(() => {
                         )}
                         {/* INPUT + NAV (SIEMPRE ABAJO) */}
                         <View>
-                            <View className={`px-5 ${tecladoAbierto ? "pb-4" : "pb-16"} ${inputEnFoco ? "" : "mb-8"} `}>
+                            <View className="px-4 mb-2">
                                 <Question
                                     value={input}
                                     onChangeText={setInput}
@@ -146,6 +146,12 @@ React.useEffect(() => {
                                     onFocus={() => setInputEnFoco(true)}
                                     onBlur={() => setInputEnFoco(false)}
                                 />
+                                {inputEnFoco  && !tecladoAbierto && (
+                                    <View className="h-12 bg-transparent"></View>
+                                )}
+                                {!inputEnFoco  && !tecladoAbierto && (
+                                    <View className="h-24 bg-transparent"></View>
+                                )}
                             </View>
                             
                         </View>

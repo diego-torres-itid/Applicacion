@@ -217,7 +217,6 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
         setMostrarDatePicker(false);
         setMostrarTimePicker(false);
         
-        // 🔥 Si se pasó onClose (para edición), ejecutarlo
         if (onClose) {
             onClose();
         }
@@ -303,7 +302,7 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
                             <DateTimePicker
                                 value={fechaSeleccionada}
                                 mode="date"
-                                display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                                display="spinner"
                                 onChange={onChangeFecha}
                                 minimumDate={new Date()}
                             />

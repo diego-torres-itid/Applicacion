@@ -1,12 +1,21 @@
 import Button from "@/src/modules/core/components/Buttons";
+import Icon from "@/src/modules/core/components/Icons";
 import InputCustom from "@/src/modules/core/components/Input";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
+
 export default function PersonasFormScreen() {
+
+    const { email, password } = useLocalSearchParams();
+
+
+    const router = useRouter();
+
 
     const [nombre, setNombre] = useState("");
     const [primerApellido, setPrimerApellido] = useState("");
@@ -19,6 +28,8 @@ export default function PersonasFormScreen() {
     const handleGuardar = async () => {
 
         const data = {
+            email,
+            password,
             nombre,
             primer_apellido: primerApellido,
             segundo_apellido: segundoApellido,
@@ -30,7 +41,7 @@ export default function PersonasFormScreen() {
         console.log("Datos del formulario:", data);
 
         try {
-            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/chat", {
+            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/datos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -49,31 +60,34 @@ export default function PersonasFormScreen() {
             <ScrollView className="p-5">
 
                 {/* TITULO */}
-                <Text className="text-[25px] font-vs-bold my-10 text-center">
+                <Text className="text-[25px] font-vs-bold my-10 mt-20 text-center">
                     Registro de persona
                 </Text>
 
                 {/* Nombre */}
                 <View className="gap-5">
+                    {/* @ts-ignore */}
                     <InputCustom
                         label="Nombre"
-                        placeholder="Ingresa tu nombre"
+                        placeholder="Nombre"
                         value={nombre}
                         onChangeText={setNombre}
                     />
 
                     {/* Primer apellido */}
+                    {/* @ts-ignore */}
                     <InputCustom
                         label="Primer apellido"
-                        placeholder="Ingresa tu primer apellido"
+                        placeholder="Primer apellido"
                         value={primerApellido}
                         onChangeText={setPrimerApellido}
                     />
 
                     {/* Segundo apellido */}
+                    {/* @ts-ignore */}
                     <InputCustom
                         label="Segundo apellido"
-                        placeholder="Ingresa tu segundo apellido"
+                        placeholder="Segundo apellido"
                         value={segundoApellido}
                         onChangeText={setSegundoApellido}
                     />
@@ -123,7 +137,8 @@ export default function PersonasFormScreen() {
                             <DateTimePicker
                                 value={fechaNacimiento}
                                 mode="date"
-                                display="calendar"
+                                display="spinner"
+                                maximumDate={new Date()}
                                 onChange={(e, selected) => {
                                     setMostrarFecha(false);
                                     if (selected) setFechaNacimiento(selected);
@@ -142,6 +157,9 @@ export default function PersonasFormScreen() {
                         onPress={handleGuardar}/>
                     </View>
                 </View>
+                <Pressable className="absolute left-5 top-5" onPress={() => router.back()}>
+                    <Icon tipo="BackGray" size={30} />
+                </Pressable>
             </ScrollView>
         </SafeAreaView>
     </SafeAreaProvider>

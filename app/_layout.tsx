@@ -104,11 +104,12 @@ export default function RootLayout() {
         }}>
           
           
-          <Stack.Screen name="Inicio/formulario" options={{ headerShown: false }}/>
+          
           <Stack.Screen name="Inicio/etapa1" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa2" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa3" options={{ headerShown: false }}/>
           <Stack.Screen name="Inicio/etapa4" options={{ headerShown: false }}/>
+          <Stack.Screen name="Inicio/formulario" options={{ headerShown: false }}/>
 
 
           <Stack.Screen name="tabs/home" options={{ headerShown: false }}/>

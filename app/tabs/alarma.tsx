@@ -17,7 +17,7 @@ export default function HomeScreen() {
 
     // 🔥 Estado para controlar la edición
     const [recordatorioEditar, setRecordatorioEditar] = useState(null);
-
+    {/* @ts-ignore */}
     const handleEdit = (index) => {
         // 🔥 Encontrar el tipo basado en el icono
         let tipo = "Recordatorio";
@@ -47,14 +47,19 @@ export default function HomeScreen() {
 
                     {/* Botones de crear */}
                     <View className="flex-row bg-Blanco mx-5 mt-5 rounded-2xl items-center justify-between px-2">
+                        {/* @ts-ignore */}
                         <CrearRecordatorio Texto="Recordatorio" />
+                        {/* @ts-ignore */}
                         <CrearRecordatorio Texto="Consulta" />
+                        {/* @ts-ignore */}
                         <CrearRecordatorio Texto="Medicacion" />
                     </View>
 
-                    {/* 🔥 Modal de edición (si está activo) */}
+                    {/*Modal de edición (si está activo) */}
                     {recordatorioEditar && (
+                        
                         <CrearRecordatorio 
+                            //@ts-ignore
                             Texto={recordatorioEditar.tipo}
                             recordatorioEditar={recordatorioEditar}
                             onClose={handleCloseEdicion}

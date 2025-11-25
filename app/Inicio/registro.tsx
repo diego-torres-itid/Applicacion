@@ -8,6 +8,33 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Registro() {
 
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
+
+    { /* @ts-ignore */}
+    const validarEmail = (email) => {
+        return /\S+@\S+\.\S+/.test(email);
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const translateY = useRef(new Animated.Value(0)).current; // empieza en 0
 
     const closeModal = () => {
@@ -161,7 +188,12 @@ export default function Registro() {
                                 <>
                                     <View className="w-full mb-5 relative">
                                         { /* @ts-ignore */}
-                                        <InputCustom placeholder="Email" icon="MailGray" iconfocused="MailBlue" />
+                                        <InputCustom    
+                                            placeholder="Email" 
+                                            icon="MailGray" 
+                                            iconfocused="MailBlue" 
+                                            value={email} 
+                                            onChangeText={setEmail}/>
                                     </View>
                                     <View className="w-full mb-5 relative flex-row items-center">
                                         { /* @ts-ignore */}
@@ -171,6 +203,8 @@ export default function Registro() {
                                             iconfocused="SecureBlue"
                                             secureTextEntry={!signupPassword1Visible}
                                             onFocusChange={setSignupPassword1Focused}
+                                            value={password}
+                                            onChangeText={setPassword}
                                         />
                                         <Pressable
                                             className="right-14"
@@ -187,6 +221,9 @@ export default function Registro() {
                                             iconfocused="SecureBlue"
                                             secureTextEntry={!signupPassword2Visible}
                                             onFocusChange={setSignupPassword2Focused}
+                                            value={repeatPassword}
+                                            onChangeText={setRepeatPassword}
+
                                         />
                                         <Pressable
                                             className="right-14"
@@ -196,10 +233,49 @@ export default function Registro() {
                                         </Pressable>
                                     </View>
                                     <View className="w-4/5 mt-5 items-center">
-                                        <Button text="Crear cuenta" color="Primario" variant="Fill" textColor="Blanco" onPress={() => { }} />
+                                        <Button 
+                                            text="Crear cuenta" 
+                                            color="Primario" 
+                                            variant="Fill" 
+                                            textColor="Blanco" 
+                                            onPress={() => {
+                                                if (!email || !password || !repeatPassword) {
+                                                    alert("Por favor llena todos los campos.");
+                                                    return;
+                                                }
+                                        
+                                                // Validar email correcto
+                                                if (!validarEmail(email)) {
+                                                    alert("Ingresa un correo válido.");
+                                                    return;
+                                                }
+                                        
+                                                // Validar contraseñas iguales
+                                                if (password !== repeatPassword) {
+                                                    alert("Las contraseñas no coinciden.");
+                                                    return;
+                                                }
+                                        
+                                                // Validar longitud mínima (opcional pero recomendado)
+                                                if (password.length < 6) {
+                                                    alert("La contraseña debe tener al menos 6 caracteres.");
+                                                    return;
+                                                }
+                                        
+                                                // Si todo está bien, avanzar
+                                                router.push({
+                                                    pathname: "./formulario",
+                                                    params: {
+                                                        email,
+                                                        password,
+                                                    },
+                                                });
+                                            }}
+                                        />
                                     </View>
                                 </>
                             )}
+
 
 
 

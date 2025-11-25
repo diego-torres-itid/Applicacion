@@ -150,9 +150,21 @@ React.useEffect(() => {
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-                <View className="relative">
-                <Nav screenActual="chat" />
-                </View>
+                {Platform.OS === "ios" ? (
+                    <View className="relative">
+                        <Nav screenActual="chat" />
+                    </View>
+                ) : (
+                    <View className="relative" style={{ paddingBottom: inputEnFoco ? 0 : 16 }}>
+                        <Nav screenActual="chat" />
+                    </View>
+                )}
+
+
+
+
+
+                
             </SafeAreaView>
         </SafeAreaProvider>
     );

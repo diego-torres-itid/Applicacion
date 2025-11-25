@@ -30,6 +30,7 @@ export default function HomeScreen() {
     const mensajes = useChatStore(state => state.mensajes);
     const addMensaje = useChatStore(state => state.addMensaje);
 
+
     const [input, setInput] = React.useState("");
 
     const scrollViewRef = React.useRef<ScrollView>(null);

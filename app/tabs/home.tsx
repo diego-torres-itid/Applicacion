@@ -111,7 +111,7 @@ export default function HomeScreen() {
               <View className="p-3 bg-GrisOscuro rounded-full">
                 <Icon tipo="Coronavirus" size={30} />
               </View>
-              <Text className="font-vs-regular text-[12px]">Hbitos</Text>
+              <Text className="font-vs-regular text-[12px]">Habitos</Text>
             </View>
             <View className="items-center gap-2" >
               <View className="p-3 bg-GrisOscuro rounded-full">

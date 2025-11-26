@@ -48,6 +48,8 @@ export default function HomeScreen() {
     }, [mensajes]);
 
 
+    
+
     // Enviar mensaje
     const enviarMensaje = async (mensajeOpcional?: string) => {
         const textoEnviado = mensajeOpcional ?? input;
@@ -55,6 +57,11 @@ export default function HomeScreen() {
         const ahora = new Date();
         const fechaActual = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2,'0')} ` +
                             `${String(ahora.getHours()).padStart(2,'0')}:${String(ahora.getMinutes()).padStart(2,'0')}:${String(ahora.getSeconds()).padStart(2,'0')}`;
+
+                            const modoActual = useThemeStore.getState().modoConsulta;
+
+                            const pretipo = modoActual ? "consulta" : "normal";
+                            console.log("🔥 PRETIPO FINAL DESDE STORE:", pretipo);
 
         addMensaje({
             Texto: textoEnviado,
@@ -73,7 +80,8 @@ export default function HomeScreen() {
             body: JSON.stringify({ 
                 id_persona: "1",
                 pregunta_usuario: textoEnviado,
-                fecha_y_hora: fechaActual
+                fecha_y_hora: fechaActual,
+                tipo: pretipo,
             }),
         });
 

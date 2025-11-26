@@ -299,22 +299,40 @@ export default function CrearRecordatorio({ Texto, recordatorioEditar, onClose }
 
                         {/* Date Pickers */}
                         {mostrarDatePicker && (
+                        <View className="w-48 h-48 mx-auto flex items-center justify-center  rounded-lg shadow-xl p-4">
                             <DateTimePicker
-                                value={fechaSeleccionada}
-                                mode="date"
-                                display="spinner"
-                                onChange={onChangeFecha}
-                                minimumDate={new Date()}
+                            value={fechaSeleccionada}
+                            mode="date"
+                            display="spinner"
+                            onChange={onChangeFecha}
+                            minimumDate={new Date()}
+                            style={{
+                                transform: [
+                                { scale: .75 }
+                                ],
+                                transformOrigin: 'center center', 
+                                height: 200, 
+                            }}
                             />
+                        </View>
                         )}
 
                         {mostrarTimePicker && (
+                              <View className="w-24 h-12 mx-auto flex items-center justify-center  rounded-lg shadow-xl p-4">
                             <DateTimePicker
                                 value={fechaSeleccionada}
                                 mode="time"
-                                display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                                display={Platform.OS === 'ios' ? 'default' : 'default'}
                                 onChange={onChangeHora}
+                                style={{
+                                    transform: [
+                                    { scale: 1.25 }
+                                    ],
+                                    transformOrigin: 'center center', 
+                                    height: 200, 
+                                }}
                             />
+                              </View>
                         )}
 
                         <View className="flex-row justify-between mt-4">

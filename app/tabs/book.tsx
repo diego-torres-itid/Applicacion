@@ -12,12 +12,19 @@ export default function HomeScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
+            <Header tipo="Default" />
+            <View className="h-24 justify-center items-center bg-Primario">
+                <Text className="text-Blanco text-3xl font-vs-semibold">Explora tu historial médico</Text>
+            </View>
+            <ScrollView
+                className="flex-1 bg-Fondo"
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 30 }}
+                >
                 <View className="bg-Fondo flex-1">
-                    <Header tipo="Default" />
-                    <View className="bg-Primario flex-1">
-                        <View className="h-24 justify-center items-center">
-                            <Text className="text-Blanco text-3xl font-vs-semibold">Explora tu historial médico</Text>
-                        </View>
+                    
+                    <View className="flex-1">
+
                         <View className=" bg-Fondo rounded-t-3xl flex-1">
 
                         <View className="p-5">
@@ -57,6 +64,8 @@ export default function HomeScreen() {
                     </View>
                     
                 </View>
+
+                </ScrollView>
                 <View className="justify-end ">
                     <Nav screenActual="book" />
                 </View>

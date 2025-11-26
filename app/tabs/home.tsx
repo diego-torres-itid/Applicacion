@@ -40,7 +40,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 bg-Blanco">
-
+      <Header tipo="Home"/>
       <ScrollView
           className="flex-1 bg-Fondo"
           showsVerticalScrollIndicator={false}
@@ -49,7 +49,7 @@ export default function HomeScreen() {
 
         <View className="flex-1 bg-Fondo">
           <View>
-            <Header tipo="Home"/>
+            
 
             {/* Project */}
             <View className="flex-row justify-between mt-5 px-10 items-center">

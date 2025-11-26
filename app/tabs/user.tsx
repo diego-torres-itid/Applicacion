@@ -22,13 +22,14 @@ export default function HomeScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
+            <Header  tipo="Perfil"/>
             <ScrollView
                 className="flex-1 bg-Fondo"
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 30 }}
                 >
                 <View className="flex-1 bg-Fondo">
-                    <Header  tipo="Perfil"/>
+                    
                     <View className="px-10 py-5">
                         <Perfil mostrarDetalles={true}/>
                     </View>

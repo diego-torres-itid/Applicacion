@@ -23,6 +23,7 @@ export const useUserStore = create(
           segundo_apellido: data.segundo_apellido,
           fecha_nacimiento: data.fecha_nacimiento,
         }),
+        
 
       // --- LOGOUT ---
       clearUser: () =>

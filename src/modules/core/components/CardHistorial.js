@@ -5,11 +5,11 @@ import Icon from './Icons';
 
     const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
-    export default function CardHistorial({ Icono, Titulo, Texto }){
+    export default function CardHistorial({ Icono, Titulo, Texto, onPress }){
 
     
     return(
-        <Pressable className="active:opacity-60" >
+        <Pressable className="active:opacity-60" onPress={onPress} >
             <View className="p-5 rounded-3xl bg-Blanco gap-3 justify-center"
             style={{
                 width: screenWidth * 0.4274,

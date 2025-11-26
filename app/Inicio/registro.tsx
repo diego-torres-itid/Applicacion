@@ -103,6 +103,15 @@ export default function Registro() {
                 segundo_apellido: info.datos.segundo_apellido,
                 fecha_nacimiento: info.datos.fecha_nacimiento
             });
+
+            /* 
+
+            useUserStore.getState().setUserHisorial({
+                nombre: historial.datos.peso,
+                primer_apellido: historial.datos.altura,
+            });
+
+            */
     
         } catch (error) {
             console.log("❌ Error en segundo request:", error);

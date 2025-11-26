@@ -2,13 +2,19 @@ import "@/global.css";
 import ButtonHistorial from '@/src/modules/core/components/ButtonHIstorial';
 import CardHistorial from "@/src/modules/core/components/CardHistorial";
 import Header from '@/src/modules/core/components/Header';
+import ModalBiometricc from "@/src/modules/core/components/ModalBiometrico";
 import Nav from '@/src/modules/core/components/Nav';
 import React, { useState } from "react";
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function HomeScreen() {
+    const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("Todo");
     const botones = ["Todo", "Malestar", "Entorno", "Otro"];
+
+    const Nada = () => {
+        
+    };
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
@@ -51,14 +57,24 @@ export default function HomeScreen() {
                                 gap: 20,
                                 paddingBottom: 40,
                             }}>
-                                <CardHistorial Icono="Contacts" Titulo="Biometricos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="Comunidad" Titulo="Lazos" Texto="Antecedentes familiares"/>
-                                <CardHistorial Icono="Jeringa" Titulo="Vacunuas" Texto="Vacunas recibidas"/>
-                                <CardHistorial Icono="Icons8" Titulo="Habitos" Texto="Cosas que sueles ahcer"/>
-                                <CardHistorial Icono="Alergias" Titulo="Sintomas" Texto="Esto es lo que sientes"/>
-                                <CardHistorial Icono="RegistroMedico" Titulo="Intervenciones" Texto="Documents, ID c..."/>
-                                <CardHistorial Icono="Pastilla" Titulo="Medicamentos" Texto="Altura y peso"/>
-                                <CardHistorial Icono="Virus" Titulo="Enfermedades" Texto="Altura y peso"/>
+                                <CardHistorial 
+                                Icono="Contacts" 
+                                Titulo="Biometricos" 
+                                Texto="Altura y peso"
+                                onPress={() => {
+                                    console.log("Card presionado");
+                                    setOpen(true);
+                                }}
+                                />
+                                
+                                
+                                <CardHistorial Icono="Comunidad" Titulo="Lazos" Texto="Antecedentes familiares" onPress={Nada}/>
+                                <CardHistorial Icono="Jeringa" Titulo="Vacunuas" Texto="Vacunas recibidas" onPress={Nada}/>
+                                <CardHistorial Icono="Icons8" Titulo="Habitos" Texto="Cosas que sueles ahcer" onPress={Nada}/>
+                                <CardHistorial Icono="Alergias" Titulo="Sintomas" Texto="Esto es lo que sientes" onPress={Nada}/>
+                                <CardHistorial Icono="RegistroMedico" Titulo="Intervenciones" Texto="Documents, ID c..." onPress={Nada}/>
+                                <CardHistorial Icono="Pastilla" Titulo="Medicamentos" Texto="Altura y peso" onPress={Nada}/>
+                                <CardHistorial Icono="Virus" Titulo="Enfermedades" Texto="Altura y peso"onPress={Nada}/>
                             </ScrollView>
                         </View>
                     </View>
@@ -66,6 +82,12 @@ export default function HomeScreen() {
                 </View>
 
                 </ScrollView>
+
+                <ModalBiometricc 
+                    visible={open} 
+                    onClose={() => setOpen(false)} 
+                />
+                                
                 <View className="justify-end ">
                     <Nav screenActual="book" />
                 </View>

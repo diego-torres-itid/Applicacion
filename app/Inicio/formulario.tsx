@@ -80,12 +80,13 @@ export default function PersonasFormScreen() {
             sexo,
             fecha_nacimiento: fechaNacimiento.toISOString().slice(0, 10),
             tipo_sangre: tipoSangre,
+            accion: "register"
         };
 
         console.log("Datos del formulario:", data);
 
         try {
-            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/registrar", {
+            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/auth", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),

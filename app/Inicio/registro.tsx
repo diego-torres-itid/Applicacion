@@ -41,14 +41,15 @@ export default function Registro() {
         console.log("Mensaje enviado a API:", JSON.stringify(payload, null, 2));
     
         try {
-            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/datos", {
+            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/auth", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     email: loginEmail,
-                    password: loginPassword
+                    password: loginPassword,
+                    accion: "login"
                 })
             });
     

@@ -3,8 +3,8 @@ import Card from '@/src/modules/core/components/Card';
 import Header from '@/src/modules/core/components/Header';
 import Icon from '@/src/modules/core/components/Icons';
 import Nav from '@/src/modules/core/components/Nav';
-import React, { useState } from "react";
-import { Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { BackHandler, Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -25,6 +25,16 @@ export default function HomeScreen() {
     const index = Math.round(offsetX / (screenWidth * 0.6));
     setActiveIndex(index);
   };
+
+  useEffect(() => {
+    const handler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => true // ← bloquea SOLO aquí
+    );
+
+    return () => handler.remove(); // ← al salir, vuelve a funcionar normal
+  }, []);
+
 
 
   return (

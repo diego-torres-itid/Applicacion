@@ -27,7 +27,7 @@ export default function Etapa4() {
                 </View>
                 <View className="absolute w-4/5 bottom-40">
                     <Button 
-                    text="Next"
+                    text="Comenzar"
                     textColor="Blanco" 
                     color="Primario" 
                     variant="Fill" 

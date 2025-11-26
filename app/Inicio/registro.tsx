@@ -109,7 +109,7 @@ export default function Registro() {
             alert("No se pudo obtener la información adicional");
         }
     
-        router.push("/tabs/home");
+        router.replace("/tabs/home");
     };
     
 

@@ -124,7 +124,7 @@ export default function RootLayout() {
             name="Inicio/registro" 
             options={{ 
               headerShown: false,
-              presentation: 'modal',
+              presentation: 'transparentModal',
               animation: 'slide_from_bottom', 
             }}
           />

@@ -85,7 +85,7 @@ export default function PersonasFormScreen() {
         console.log("Datos del formulario:", data);
 
         try {
-            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/datos", {
+            const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/registrar", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),

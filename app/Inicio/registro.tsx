@@ -54,6 +54,8 @@ export default function Registro() {
     
             const data = await response.json();
             console.log("Respuesta API:", data);
+            const idPersona = data.id_persona;
+            console.log("ID Persona recibido:", idPersona);
     
             if (!response.ok) {
                 alert(data.message || "Error al iniciar sesión");

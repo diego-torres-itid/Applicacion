@@ -94,11 +94,12 @@ export default function PersonasFormScreen() {
             const result = await response.json();
 
             if (!response.ok) {
-            console.log("Respuesta API:", result);
-            alert(result.message || "Error al guardar los datos");
-            return;
+                console.log("Respuesta API:", result);
+                alert(result.message || "Error al guardar los datos");
+                return;
             }
-
+            const idPersona = result.id_persona;
+            console.log("ID Persona recibido:", idPersona);
             alert("Cuenta creada correctamente.");
             router.back();
 

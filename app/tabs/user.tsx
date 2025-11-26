@@ -3,6 +3,8 @@ import Perfil from '@/src/modules/core/components/DatosPerfil';
 import Header from '@/src/modules/core/components/Header';
 import Nav from '@/src/modules/core/components/Nav';
 import SeccionPrefil from '@/src/modules/core/components/SeccionPrefil';
+import { useUserStore } from "@/src/store/userStore";
+import { router } from "expo-router";
 import { Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 export default function HomeScreen() {
@@ -11,6 +13,12 @@ export default function HomeScreen() {
         
     };
     
+    const clearUser = useUserStore(state => state.clearUser);
+
+    const logout = async () => {
+        await clearUser();  
+        router.replace("/");  
+    };
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
@@ -24,7 +32,7 @@ export default function HomeScreen() {
 
                         <SeccionPrefil Icono="EditUser" Texto="Editar perfil" onPress={Nada}/>
                         <SeccionPrefil Icono="Notification" Texto="Notificaciones" onPress={Nada}/>
-                        <SeccionPrefil Icono="Config" Texto="Seccion" onPress={Nada}/>
+                        <SeccionPrefil Icono="Config" Texto="Cerrar sesion" onPress={logout}/>
 
                     </View>
                 </View>

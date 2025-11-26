@@ -12,6 +12,9 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
     const renderContenido = () => {
         const nombre = useUserStore(state => state.nombre);
         const primerApellido = useUserStore(state => state.primer_apellido);
+        const segundoApellido = useUserStore(state => state.segundo_apellido);
+
+        const nombreCorto = (nombre || "").split(" ")[0];
 
         switch (tipo) {
             case "Perfil":
@@ -27,7 +30,7 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
                         <View className="bg-GrisOscuro rounded-full p-2">
                             <Icon tipo="User" relleno="Lleno" color="Blanco" size={35}/>
                         </View>
-                        <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombre} {primerApellido}</Text>
+                        <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombreCorto} {primerApellido} {segundoApellido} </Text>
                     </View>
                 );
 
@@ -39,7 +42,7 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
                         </View>
                         <View>
                             <Text className="font-vs-extralighttext text-sm">Bienvenido de nuevo,</Text>
-                            <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombre} {primerApellido}</Text>
+                            <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombreCorto} {primerApellido} {segundoApellido} </Text>
                         </View>
                     </View>
                 );

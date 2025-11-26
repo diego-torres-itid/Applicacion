@@ -88,7 +88,7 @@ export default function Registro() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    id: idPersona,
+                    id_persona: idPersona,
                     accion: "perfil"
                 })
             });
@@ -98,9 +98,10 @@ export default function Registro() {
 
 
             useUserStore.getState().setUserData({
-                nombre: info.nombre,
-                primer_apellido: info.primer_apellido,
-                segundo_apellido: info.segundo_apellido
+                nombre: info.datos.nombre,
+                primer_apellido: info.datos.primer_apellido,
+                segundo_apellido: info.datos.segundo_apellido,
+                fecha_nacimiento: info.datos.fecha_nacimiento
             });
     
         } catch (error) {

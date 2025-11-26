@@ -44,7 +44,7 @@ export default function HomeScreen() {
       <ScrollView
           className="flex-1 bg-Fondo"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 80 }}
+          contentContainerStyle={{ paddingBottom: 30 }}
         >
 
         <View className="flex-1 bg-Fondo">
@@ -90,49 +90,55 @@ export default function HomeScreen() {
             <Text className="font-vs-regular text-[14px]">(2 pendientes)</Text>
           </View>
           {/* Tasks */}
-          <View className="flex-row justify-between mt-5 px-10 items-center">
-            <View className="items-center">
+          <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                >
+          <View className="flex-row gap-5 mt-5 px-10 items-center">
+            <View className="items-center gap-2">
               <View className="p-3 bg-GrisOscuro rounded-full">
                 <Icon tipo="Coronavirus" size={30} />
               </View>
               <Text className="font-vs-regular text-[12px]">Enfermedades</Text>
             </View>
-            <View className="items-center">
+            <View className="items-center gap-2">
               <View className="p-3 bg-GrisOscuro rounded-full">
                 <Icon tipo="DolorCabeza" size={30} />
               </View>
               <Text className="font-vs-regular text-[12px]">Sintomas</Text>
             </View>
-            <View className="items-center">
+            <View className="items-center gap-2">
               <View className="p-3 bg-GrisOscuro rounded-full">
                 <Icon tipo="Coronavirus" size={30} />
               </View>
               <Text className="font-vs-regular text-[12px]">Hbitos</Text>
             </View>
-            <View className="items-center">
+            <View className="items-center gap-2" >
               <View className="p-3 bg-GrisOscuro rounded-full">
                 <Icon tipo="Caminar" size={30} />
               </View>
               <Text className="font-vs-regular text-[12px]">Factores</Text>
             </View>
-            <View className="items-center">
+            <View className="items-center gap-2">
               <View className="p-3 bg-GrisOscuro rounded-full">
                 <Icon tipo="IndustriaBlanca" size={30} />
               </View>
               <Text className="font-vs-regular text-[12px]">Medicamentos</Text>
             </View>
           </View>
+          </ScrollView>
 
           <View className="flex-row gap-4  mt-5 px-10 items-center">
             <Text className="font-vs-medium text-[22px]">Registros pendientes</Text>
             <Icon tipo="Cambiar" size={25}/>
           </View>
 
+          
 
-          <View className="px-10 mt-5" style={{ maxHeight: 300 }}>
+
+          <View className="px-10 mt-5 " style={{ maxHeight: 300 }}>
           <ScrollView 
-          nestedScrollEnabled={true}
-
+            nestedScrollEnabled={true}
             showsVerticalScrollIndicator={false}
           >
             <CardRegistro 

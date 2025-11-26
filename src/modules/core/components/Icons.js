@@ -56,6 +56,7 @@ import Like from "../../../assets/icons/like.svg";
 import MailBlue from "../../../assets/icons/mail-blue.svg";
 import MailGray from "../../../assets/icons/mail-gray.svg";
 import Mancuerna from "../../../assets/icons/mancuerna.svg";
+import Mas from "../../../assets/icons/mas.svg";
 import Medicina from "../../../assets/icons/mediciine.svg";
 import MicFillBlue from "../../../assets/icons/mic-fill-blue.svg";
 import MicOutlineBlack from "../../../assets/icons/mic-outline-black.svg";
@@ -210,6 +211,7 @@ const iconMap = {
     PastillaBlanca,
     Coronavirus,
     DolorCabezaNegro,
+    Mas,
 };
 
 /**

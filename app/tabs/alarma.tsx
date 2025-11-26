@@ -2,10 +2,11 @@ import "@/global.css";
 
 import CrearRecordatorio from '@/src/modules/core/components/CrearRecordatorio';
 import Header from '@/src/modules/core/components/Header';
+import Icon from '@/src/modules/core/components/Icons';
 import Nav from '@/src/modules/core/components/Nav';
 import Recordatorio from '@/src/modules/core/components/Recordatorio';
 
-import { ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { useRecordatorioStore } from "@/src/store/recordatorioStore";
@@ -42,11 +43,12 @@ export default function HomeScreen() {
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
                 <View className="flex-1 bg-Fondo">
-
                     <Header tipo="Default" />
+                    <View className="flex-1 bg-Primario">
 
+                        <Text className="text-Blanco text-3xl font-vs-semibold py-10 text-center">Recordatorios</Text>
                     {/* Botones de crear */}
-                    <View className="flex-row bg-Blanco mx-5 mt-5 rounded-2xl items-center justify-between px-2">
+                    <View className="flex-row bg-Blanco mx-5 mb-8 overflow-hidden rounded-2xl items-center justify-between px-2">
                         {/* @ts-ignore */}
                         <CrearRecordatorio Texto="Recordatorio" />
                         {/* @ts-ignore */}
@@ -54,6 +56,11 @@ export default function HomeScreen() {
                         {/* @ts-ignore */}
                         <CrearRecordatorio Texto="Medicacion" />
                     </View>
+                    <View className="flex-1 bg-Fondo rounded-t-3xl">
+
+                    <Pressable className="absolute bottom-10 right-10 bg-Blanco border-Primario border-2 rounded-full p-5">
+                        <Icon tipo="Mas" size={30}/>
+                    </Pressable>
 
                     {/*Modal de edición (si está activo) */}
                     {recordatorioEditar && (
@@ -84,9 +91,9 @@ export default function HomeScreen() {
                             ))}
                         </View>
                     </ScrollView>
-
+                    </View>
                 </View>
-
+                </View>
                 <View className="justify-end">
                     <Nav screenActual="alarma" />
                 </View>

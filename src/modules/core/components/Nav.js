@@ -10,7 +10,7 @@ export default function Nav({ screenActual = "home" }){
         if(screenActual === ruta) {
             return;
         }
-        router.push(`/tabs/${ruta}`);
+        router.replace(`/tabs/${ruta}`);
     };
 
 	return (

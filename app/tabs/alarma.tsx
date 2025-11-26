@@ -2,11 +2,10 @@ import "@/global.css";
 
 import CrearRecordatorio from '@/src/modules/core/components/CrearRecordatorio';
 import Header from '@/src/modules/core/components/Header';
-import Icon from '@/src/modules/core/components/Icons';
 import Nav from '@/src/modules/core/components/Nav';
 import Recordatorio from '@/src/modules/core/components/Recordatorio';
 
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { useRecordatorioStore } from "@/src/store/recordatorioStore";
@@ -57,10 +56,6 @@ export default function HomeScreen() {
                         <CrearRecordatorio Texto="Medicacion" />
                     </View>
                     <View className="flex-1 bg-Fondo rounded-t-3xl">
-
-                    <Pressable className="absolute bottom-10 right-10 bg-Blanco border-Primario border-2 rounded-full p-5">
-                        <Icon tipo="Mas" size={30}/>
-                    </Pressable>
 
                     {/*Modal de edición (si está activo) */}
                     {recordatorioEditar && (

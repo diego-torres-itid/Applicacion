@@ -30,7 +30,7 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
                         <View className="bg-GrisOscuro rounded-full p-2">
                             <Icon tipo="User" relleno="Lleno" color="Blanco" size={35}/>
                         </View>
-                        <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombreCorto} {primerApellido} {segundoApellido} </Text>
+                        <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombreCorto} {primerApellido} </Text>
                     </View>
                 );
 
@@ -42,7 +42,7 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
                         </View>
                         <View>
                             <Text className="font-vs-extralighttext text-sm">Bienvenido de nuevo,</Text>
-                            <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombreCorto} {primerApellido} {segundoApellido} </Text>
+                            <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombreCorto} {primerApellido}</Text>
                         </View>
                     </View>
                 );

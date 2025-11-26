@@ -12,6 +12,8 @@ import BookOutlineWhite from "../../../assets/icons/book/book-outline-white.svg"
 import CalendarBlue from "../../../assets/icons/calendar-blue.svg";
 import CalendarGray from "../../../assets/icons/calendar-gray.svg";
 import CalendarOutlineGray from "../../../assets/icons/calendar-outline-gray.svg";
+import Cambiar from "../../../assets/icons/cambiar.svg";
+import Caminar from "../../../assets/icons/caminar.svg";
 import ChatFillBlack from "../../../assets/icons/chat/chat-fill-black.svg";
 import ChatFillWhite from "../../../assets/icons/chat/chat-fill-white.svg";
 import ChatOutlineBlack from "../../../assets/icons/chat/chat-outilne-black.svg";
@@ -26,8 +28,12 @@ import Comunidad from "../../../assets/icons/comunidad.svg";
 import ConfigBlue from "../../../assets/icons/config-blue.svg";
 import Config from "../../../assets/icons/config.svg";
 import Contacts from "../../../assets/icons/contacts.svg";
+import Coronavirus from "../../../assets/icons/coronavirus.svg";
 import DeleteGray from "../../../assets/icons/delete-gray.svg";
 import DeleteRed from "../../../assets/icons/delete-red.svg";
+import DolorCabeza from "../../../assets/icons/dolorcabeza.svg";
+import DolorCabezaNegro from "../../../assets/icons/dolorcabezanegro.svg";
+import Check from "../../../assets/icons/done.svg";
 import DownBlue from "../../../assets/icons/down-blue.svg";
 import DownGray from "../../../assets/icons/down-gray.svg";
 import EditUser from "../../../assets/icons/edit-user.svg";
@@ -43,6 +49,7 @@ import HomeOutlineBlack from "../../../assets/icons/home/home-outline-black.svg"
 import HomeOutlineWhite from "../../../assets/icons/home/home-outline-white.svg";
 import Icons8 from "../../../assets/icons/icons8.svg";
 import Industria from "../../../assets/icons/industria.svg";
+import IndustriaBlanca from "../../../assets/icons/industriablanca.svg";
 import Info from "../../../assets/icons/info.svg";
 import Jeringa from "../../../assets/icons/jeringa.svg";
 import Like from "../../../assets/icons/like.svg";
@@ -59,7 +66,9 @@ import NextGray from "../../../assets/icons/next-gray.svg";
 import NotificationBlue from "../../../assets/icons/notification-blue.svg";
 import Notification from "../../../assets/icons/notification.svg";
 import Pastilla from "../../../assets/icons/pastilla.svg";
+import PastillaBlanca from "../../../assets/icons/pastillablanca.svg";
 import Plus from "../../../assets/icons/plus.svg";
+import Pulmones from "../../../assets/icons/pulmones.svg";
 import Question from "../../../assets/icons/question.svg";
 import RegistroMedico from "../../../assets/icons/registromedico.svg";
 import Regla from "../../../assets/icons/regla.svg";
@@ -159,6 +168,8 @@ const iconMap = {
     Notification,
     Search,
     HearthRate,
+    Cambiar,
+    Check,
     TreePoint,
     Alergias,
     Comunidad,
@@ -192,6 +203,13 @@ const iconMap = {
     Plus,
     SendBlue,
     Send,
+    DolorCabeza,
+    Pulmones,
+    Caminar,
+    IndustriaBlanca,
+    PastillaBlanca,
+    Coronavirus,
+    DolorCabezaNegro,
 };
 
 /**

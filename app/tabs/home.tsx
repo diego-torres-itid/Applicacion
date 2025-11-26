@@ -1,19 +1,19 @@
 import "@/global.css";
 import Card from '@/src/modules/core/components/Card';
+import CardRegistro from "@/src/modules/core/components/CardRegistro";
 import Header from '@/src/modules/core/components/Header';
 import Icon from '@/src/modules/core/components/Icons';
 import Nav from '@/src/modules/core/components/Nav';
 import React, { useEffect, useState } from "react";
-import { BackHandler, Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
+import { BackHandler, Dimensions, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
 const { width: screenWidth } = Dimensions.get("window");
 
 const data = [
-  { Icono: "SecureGray", Titulo: "Game Design", Descripcion: "Create menu in dashboard & Make user flow" },
-  { Icono: "UserGray", Titulo: "Decission", Descripcion: "Edit Icons for the team task for next week" },
-  { Icono: "HealthBlue", Titulo: "Historial", Descripcion: "Tu historial clínico" },
+  { Icono: "Pulmones", IconoFocus: "", Titulo: "Cuestionario respiratorio", Descripcion: "Evaluar sintomas respiratorios relevantes" },
+  { Icono: "DolorCabezaNegro", IconoFocus: "DolorCabeza", Titulo: "Sintomas actuales", Descripcion: "Evaluar como te sientes hoy rapidamente" },
 ];
 
 
@@ -40,20 +40,24 @@ export default function HomeScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 bg-Blanco">
+
+      <ScrollView
+          className="flex-1 bg-Fondo"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 80 }}
+        >
+
         <View className="flex-1 bg-Fondo">
           <View>
             <Header tipo="Home"/>
 
             {/* Project */}
-            <View className="flex-row justify-between mt-10 px-10 items-center">
-              <Text className="font-vs-bold text-3xl">Project</Text>
-              <Pressable>
-                <Text className="font-vs-light text-lg">All Task</Text>
-              </Pressable>
+            <View className="flex-row justify-between mt-5 px-10 items-center">
+              <Text className="font-vs-medium text-[28px]">Contesta los cuestionarios y mejora tu historial.</Text>
             </View>
 
             {/* Carrusel */}
-            <View className="h-[280px]">
+            <View className="h-[230px]">
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -70,6 +74,7 @@ export default function HomeScreen() {
                     <Card
                       key={index}
                       Icono={item.Icono}
+                      IconoFocus={item.IconoFocus}
                       Titulo={item.Titulo}
                       Descripcion={item.Descripcion}
                       isActive={activeIndex === index} // <- detecta si es el del medio
@@ -80,31 +85,103 @@ export default function HomeScreen() {
           </View>
 
           {/* Tasks */}
-          <View className="flex-row justify-between  mt-10 px-10 items-center ">
-            <Text className="font-vs-bold text-3xl">Tasks</Text>
-            <Pressable>
-              <Text className="font-vs-light text-lg">View All</Text>
-            </Pressable>
+          <View className="flex-row gap-4  mt-5 px-10 items-center">
+            <Text className="font-vs-medium text-[22px]">Encuestas semanales</Text>
+            <Text className="font-vs-regular text-[14px]">(2 pendientes)</Text>
           </View>
           {/* Tasks */}
           <View className="flex-row justify-between mt-5 px-10 items-center">
-            <View className="border-GrisOscuro p-3 border-[1px] rounded-full">
-              <Icon tipo="HearthRate" size={30} />
+            <View className="items-center">
+              <View className="p-3 bg-GrisOscuro rounded-full">
+                <Icon tipo="Coronavirus" size={30} />
+              </View>
+              <Text className="font-vs-regular text-[12px]">Enfermedades</Text>
             </View>
-            <View className="border-GrisOscuro p-3 border-[1px] rounded-full">
-              <Icon tipo="SecureGray" size={30} />
+            <View className="items-center">
+              <View className="p-3 bg-GrisOscuro rounded-full">
+                <Icon tipo="DolorCabeza" size={30} />
+              </View>
+              <Text className="font-vs-regular text-[12px]">Sintomas</Text>
             </View>
-            <View className="border-GrisOscuro p-3 border-[1px] rounded-full">
-              <Icon tipo="SecureGray" size={30} />
+            <View className="items-center">
+              <View className="p-3 bg-GrisOscuro rounded-full">
+                <Icon tipo="Coronavirus" size={30} />
+              </View>
+              <Text className="font-vs-regular text-[12px]">Hbitos</Text>
             </View>
-            <View className="border-GrisOscuro p-3 border-[1px] rounded-full">
-              <Icon tipo="SecureGray" size={30} />
+            <View className="items-center">
+              <View className="p-3 bg-GrisOscuro rounded-full">
+                <Icon tipo="Caminar" size={30} />
+              </View>
+              <Text className="font-vs-regular text-[12px]">Factores</Text>
             </View>
-            <View className="border-GrisOscuro p-3 border-[1px] rounded-full">
-              <Icon tipo="SecureGray" size={30} />
+            <View className="items-center">
+              <View className="p-3 bg-GrisOscuro rounded-full">
+                <Icon tipo="IndustriaBlanca" size={30} />
+              </View>
+              <Text className="font-vs-regular text-[12px]">Medicamentos</Text>
             </View>
           </View>
+
+          <View className="flex-row gap-4  mt-5 px-10 items-center">
+            <Text className="font-vs-medium text-[22px]">Registros pendientes</Text>
+            <Icon tipo="Cambiar" size={25}/>
+          </View>
+
+
+          <View className="px-10 mt-5" style={{ maxHeight: 300 }}>
+          <ScrollView 
+          nestedScrollEnabled={true}
+
+            showsVerticalScrollIndicator={false}
+          >
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+            <CardRegistro 
+              Titulo="Migraña → Aun te duele la cabeza?" 
+              Fecha="2/25/2025"
+            />
+        </ScrollView>
+        </View>
+
+
+
         </View> 
+        </ScrollView>
         <View className="justify-end">
           <Nav screenActual="home" />
         </View>

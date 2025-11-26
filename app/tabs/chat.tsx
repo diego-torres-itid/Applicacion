@@ -8,6 +8,7 @@ import Pre from '@/src/modules/core/components/Pre';
 import Question from "@/src/modules/core/components/Question";
 import { useChatStore } from "@/src/store/chatStore";
 import { useThemeStore } from "@/src/store/themeStore";
+import { useUserStore } from "@/src/store/userStore";
 import * as React from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -32,6 +33,8 @@ export default function HomeScreen() {
     const modoConsulta = useThemeStore(state => state.modoConsulta);
     const toggleModoConsulta = useThemeStore(state => state.toggleModoConsulta);
     
+    const userId = useUserStore(state => state.userId);
+
 
     const mensajes = useChatStore(state => state.mensajes);
     const addMensaje = useChatStore(state => state.addMensaje);
@@ -78,7 +81,7 @@ export default function HomeScreen() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ 
-                id_persona: "1",
+                id_persona: userId, 
                 pregunta_usuario: textoEnviado,
                 fecha_y_hora: fechaActual,
                 tipo: pretipo,

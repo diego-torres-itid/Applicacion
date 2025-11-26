@@ -1,6 +1,7 @@
 import "@/global.css";
 import Logo from "@/src/assets/logo.svg";
 import { useThemeStore } from "@/src/store/themeStore";
+import { useUserStore } from "@/src/store/userStore";
 import * as React from "react";
 import { Pressable, Text, View } from "react-native";
 import Icon from './Icons';
@@ -9,6 +10,9 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
     const modoConsulta = useThemeStore(state => state.modoConsulta);
 
     const renderContenido = () => {
+        const nombre = useUserStore(state => state.nombre);
+        const primerApellido = useUserStore(state => state.primer_apellido);
+
         switch (tipo) {
             case "Perfil":
                 return (
@@ -23,7 +27,7 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
                         <View className="bg-GrisOscuro rounded-full p-2">
                             <Icon tipo="User" relleno="Lleno" color="Blanco" size={35}/>
                         </View>
-                        <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">Name Lastname</Text>
+                        <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombre} {primerApellido}</Text>
                     </View>
                 );
 
@@ -35,7 +39,7 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
                         </View>
                         <View>
                             <Text className="font-vs-extralighttext text-sm">Bienvenido de nuevo,</Text>
-                            <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">Name Lastname</Text>
+                            <Text className="font-vs-semiboldtext text-xl text-PrimarioOscuro">{nombre} {primerApellido}</Text>
                         </View>
                     </View>
                 );

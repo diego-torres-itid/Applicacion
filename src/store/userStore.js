@@ -1,19 +1,35 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export const useUserStore = create(
   persist(
     (set) => ({
+      userId: null,
+      nombre: null,
+      primer_apellido: null,
+      segundo_apellido: null,
 
-      userId: null, //Esta es la correcta
-
-
-      
       setUserId: (id) => set({ userId: id }),
-      clearUser: () => set({ userId: null }),
+
+      setUserData: (data) =>
+        set({
+          nombre: data.nombre,
+          primer_apellido: data.primer_apellido,
+          segundo_apellido: data.segundo_apellido,
+        }),
+
+      clearUser: () =>
+        set({
+          userId: null,
+          nombre: null,
+          primer_apellido: null,
+          segundo_apellido: null,
+        }),
     }),
     {
-      name: "user-storage", // Se guarda en AsyncStorage automáticamente
+      name: "user-storage",
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );

@@ -34,6 +34,9 @@ export default function Registro() {
             alert("Por favor llena todos los campos");
             return;
         }
+        
+        let idPersona = null; // ⬅️ Declarada AQUÍ
+
         const payload = {
             email: loginEmail,
             password: loginPassword
@@ -55,7 +58,8 @@ export default function Registro() {
     
             const data = await response.json();
             console.log("Respuesta API:", data);
-            const idPersona = data.id_persona;
+
+            idPersona = data.id_persona;
             console.log("ID Persona recibido:", idPersona);
     
             if (!response.ok) {
@@ -64,15 +68,47 @@ export default function Registro() {
             }
     
             // Guardar ID en zustand
-            setUserId(data.id);
-
-            // Ir al home
-            router.push("/tabs/home");
+            useUserStore.getState().setUserId(idPersona);
+            console.log("User ID Zustand:", useUserStore.getState().userId);
         
     
         } catch (error) {
             alert("Error de conexión");
+            return;
         }
+
+
+
+
+
+        try {
+            const response2 = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/datos", {
+            method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: idPersona,
+                    accion: "perfil"
+                })
+            });
+
+            const info = await response2.json();
+            console.log("Respuesta API info extra:", info);
+
+
+            useUserStore.getState().setUserData({
+                nombre: info.nombre,
+                primer_apellido: info.primer_apellido,
+                segundo_apellido: info.segundo_apellido
+            });
+    
+        } catch (error) {
+            console.log("❌ Error en segundo request:", error);
+            alert("No se pudo obtener la información adicional");
+        }
+    
+        router.push("/tabs/home");
     };
     
 

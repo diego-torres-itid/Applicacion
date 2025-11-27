@@ -34,7 +34,7 @@ import Icon from './Icons';
                 </View>
 
                 <View className="items-center">
-                    <Text className="font-vs-medium text-[20px]">{nombre} {primerApellido} {segundoApellido}, {edad}</Text>
+                    <Text className="font-vs-medium text-[20px]">{nombre} {primerApellido} {segundoApellido}</Text>
                     <Text className="font-vs-light text-[16px]">email@ofiuco.com</Text>
                 </View>
                 
@@ -43,19 +43,19 @@ import Icon from './Icons';
 
                     <View className="items-center">
                         <Icon tipo="Mancuerna" size={30}/>
-                        <Text className="font-vs-regular text-[20px]">0.0 kg</Text>
+                        <Text className="font-vs-regular text-[20px]">60kg</Text>
                         <Text className="font-vs-light text-[12px]">Peso</Text>
                     </View>
 
                     <View className="items-center">
                         <Icon tipo="Regla" size={30}/>
-                        <Text className="font-vs-regular text-[20px]">0 cm</Text>
+                        <Text className="font-vs-regular text-[20px]">171 cm</Text>
                         <Text className="font-vs-light text-[12px]">Altura</Text>
                     </View>
 
                     <View className="items-center">
                         <Icon tipo="CalendarOutlineGray" size={30}/>
-                        <Text className="font-vs-regular text-[20px]">0</Text>
+                        <Text className="font-vs-regular text-[20px]">19</Text>
                         <Text className="font-vs-light text-[12px]">Edad</Text>
                     </View>
                     

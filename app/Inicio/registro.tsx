@@ -89,7 +89,8 @@ export default function Registro() {
                 },
                 body: JSON.stringify({
                     id_persona: idPersona,
-                    accion: "perfil"
+                    accion: "perfil",
+                    subaccion: "get",
                 })
             });
 

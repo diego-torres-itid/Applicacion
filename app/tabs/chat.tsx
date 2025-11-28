@@ -1,4 +1,5 @@
 import "@/global.css";
+import useLocation from "@/hooks/useLocation";
 // @ts-ignore
 import Logo from "@/src/assets/logo.svg";
 import Header from '@/src/modules/core/components/Header';
@@ -27,6 +28,8 @@ type Mensaje = {
 
 
 export default function HomeScreen() {
+    const { latitude, longitude, errorMsg, getUserLocation } = useLocation();
+
     const [inputEnFoco, setInputEnFoco] = React.useState(false);
 
     {/* Modo consulta */}
@@ -57,6 +60,7 @@ export default function HomeScreen() {
     const enviarMensaje = async (mensajeOpcional?: string) => {
         const textoEnviado = mensajeOpcional ?? input;
         if (!textoEnviado.trim()) return;
+        await getUserLocation();
         const ahora = new Date();
         const fechaActual = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2,'0')} ` +
                             `${String(ahora.getHours()).padStart(2,'0')}:${String(ahora.getMinutes()).padStart(2,'0')}:${String(ahora.getSeconds()).padStart(2,'0')}`;
@@ -85,6 +89,8 @@ export default function HomeScreen() {
                 pregunta_usuario: textoEnviado,
                 fecha_y_hora: fechaActual,
                 tipo: pretipo,
+                latitud: latitude,   
+                longitud: longitude,
             }),
         });
 

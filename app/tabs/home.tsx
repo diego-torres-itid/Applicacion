@@ -93,18 +93,17 @@ export default function HomeScreen() {
                   paddingRight: (screenWidth - screenWidth * 0.5) / 2, 
                   alignItems: "flex-end", // 👈 todas las cards pegadas abajo     // espacio extra para última card
                 }}>
-                  <Pressable onPress={Informacion}>
                   {data.map((item, index) => (
-                    <Card
-                      key={index}
-                      Icono={item.Icono}
-                      IconoFocus={item.IconoFocus}
-                      Titulo={item.Titulo}
-                      Descripcion={item.Descripcion}
-                      isActive={activeIndex === index} // <- detecta si es el del medio
-                      />
-                  ))}
-                  </Pressable>
+    <Pressable key={index} onPress={Informacion}>
+      <Card
+        Icono={item.Icono}
+        IconoFocus={item.IconoFocus}
+        Titulo={item.Titulo}
+        Descripcion={item.Descripcion}
+        isActive={activeIndex === index}
+      />
+    </Pressable>
+  ))}
               </ScrollView>
             </View>
           </View>

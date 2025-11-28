@@ -10,8 +10,12 @@ export const useUserStore = create(
       nombre: null,
       primer_apellido: null,
       segundo_apellido: null,
+      fecha_nacimiento: null,
 
-      isHydrated: false, // ⬅️ IMPORTANTE
+      peso: null,
+      altura: null,
+
+      isHydrated: false, // ← listo para la pantalla de carga
 
       // --- SETTERS ---
       setUserId: (id) => set({ userId: id }),
@@ -23,7 +27,12 @@ export const useUserStore = create(
           segundo_apellido: data.segundo_apellido,
           fecha_nacimiento: data.fecha_nacimiento,
         }),
-        
+
+      setDatosBiometricos: (peso, altura) =>
+        set({
+          peso,
+          altura,
+        }),
 
       // --- LOGOUT ---
       clearUser: () =>
@@ -33,13 +42,15 @@ export const useUserStore = create(
           primer_apellido: null,
           segundo_apellido: null,
           fecha_nacimiento: null,
+          peso: null,
+          altura: null,
         }),
     }),
+
     {
       name: "user-storage",
       storage: createJSONStorage(() => AsyncStorage),
 
-      // ⬅️ Hidratar estado: NECESARIO para que index.tsx funcione
       onRehydrateStorage: () => (state) => {
         state.isHydrated = true;
       },

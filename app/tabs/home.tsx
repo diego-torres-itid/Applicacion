@@ -1,6 +1,6 @@
 import "@/global.css";
+import Button from "@/src/modules/core/components/Buttons";
 import Card from '@/src/modules/core/components/Card';
-import CardRegistro from "@/src/modules/core/components/CardRegistro";
 import Header from '@/src/modules/core/components/Header';
 import Icon from '@/src/modules/core/components/Icons';
 import Nav from '@/src/modules/core/components/Nav';
@@ -14,6 +14,9 @@ const { width: screenWidth } = Dimensions.get("window");
 const data = [
   { Icono: "Pulmones", IconoFocus: "", Titulo: "Cuestionario respiratorio", Descripcion: "Evaluar sintomas respiratorios relevantes" },
   { Icono: "DolorCabezaNegro", IconoFocus: "DolorCabeza", Titulo: "Sintomas actuales", Descripcion: "Evaluar como te sientes hoy rapidamente" },
+  { Icono: "Pulmones", IconoFocus: "", Titulo: "Cuestionario respiratorio", Descripcion: "Evaluar sintomas respiratorios relevantes" },
+  { Icono: "DolorCabezaNegro", IconoFocus: "DolorCabeza", Titulo: "Sintomas actuales", Descripcion: "Evaluar como te sientes hoy rapidamente" },
+  { Icono: "Pulmones", IconoFocus: "", Titulo: "Cuestionario respiratorio", Descripcion: "Evaluar sintomas respiratorios relevantes" },
 ];
 
 
@@ -36,6 +39,10 @@ export default function HomeScreen() {
   }, []);
 
 
+
+  const AñadirMedicamento = () => {
+        
+  }; 
 
   return (
     <SafeAreaProvider>
@@ -84,12 +91,15 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          {/* Tasks */}
+
+
+
+          {/* Doctores */}
           <View className="flex-row gap-4  mt-5 px-10 items-center">
-            <Text className="font-vs-medium text-[22px]">Encuestas semanales</Text>
+            <Text className="font-vs-medium text-[22px]">Doctores</Text>
             <Text className="font-vs-regular text-[14px]">(2 pendientes)</Text>
           </View>
-          {/* Tasks */}
+          {/* Scroll Doctores */}
           <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -97,40 +107,20 @@ export default function HomeScreen() {
           <View className="flex-row gap-5 mt-5 px-10 items-center">
             <View className="items-center gap-2">
               <View className="p-3 bg-GrisOscuro rounded-full">
-                <Icon tipo="Coronavirus" size={30} />
+                <Icon tipo="PlusBlanco" size={30} />
               </View>
-              <Text className="font-vs-regular text-[12px]">Enfermedades</Text>
-            </View>
-            <View className="items-center gap-2">
-              <View className="p-3 bg-GrisOscuro rounded-full">
-                <Icon tipo="DolorCabeza" size={30} />
-              </View>
-              <Text className="font-vs-regular text-[12px]">Sintomas</Text>
-            </View>
-            <View className="items-center gap-2">
-              <View className="p-3 bg-GrisOscuro rounded-full">
-                <Icon tipo="Coronavirus" size={30} />
-              </View>
-              <Text className="font-vs-regular text-[12px]">Habitos</Text>
-            </View>
-            <View className="items-center gap-2" >
-              <View className="p-3 bg-GrisOscuro rounded-full">
-                <Icon tipo="Caminar" size={30} />
-              </View>
-              <Text className="font-vs-regular text-[12px]">Factores</Text>
-            </View>
-            <View className="items-center gap-2">
-              <View className="p-3 bg-GrisOscuro rounded-full">
-                <Icon tipo="IndustriaBlanca" size={30} />
-              </View>
-              <Text className="font-vs-regular text-[12px]">Medicamentos</Text>
+              <Text className="font-vs-regular text-[12px]">Agregar doctor</Text>
             </View>
           </View>
           </ScrollView>
 
-          <View className="flex-row gap-4  mt-5 px-10 items-center">
-            <Text className="font-vs-medium text-[22px]">Registros pendientes</Text>
-            <Icon tipo="Cambiar" size={25}/>
+
+
+          <View className="flex-row mt-5 px-10 justify-between items-center">
+            <Text className="font-vs-medium text-[22px]">Medicamentos</Text>
+            <View className="w-7/12">
+              <Button text="Añadir medicamento" color="Primario" onPress={AñadirMedicamento}/>
+            </View>
           </View>
 
           
@@ -141,46 +131,9 @@ export default function HomeScreen() {
             nestedScrollEnabled={true}
             showsVerticalScrollIndicator={false}
           >
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
-            <CardRegistro 
-              Titulo="Migraña → Aun te duele la cabeza?" 
-              Fecha="2/25/2025"
-            />
+            <View>
+              <Text className="font-vs-regular text-[16px] text-center pt-8">No hay medicamentos activos registrados</Text>
+            </View>
         </ScrollView>
         </View>
 

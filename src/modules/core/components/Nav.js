@@ -16,7 +16,7 @@ export default function Nav({ screenActual = "home" }){
 	return (
         <View>
             {screenActual !== "chat" && (
-            <View className="bg-GrisOscuro h-0.5 border-none rounded-t-lg"></View>
+            <View className=""></View>
             )}
             <View className="flex-row justify-evenly py-4 items-center bg-Blanco">
                 <Pressable onPress={() => irA("home")}>

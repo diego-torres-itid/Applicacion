@@ -75,7 +75,7 @@ export default function HomeScreen() {
         setInput("");
 
     try {
-        const response = await fetch("http://taina-preneural-stereochromatically.ngrok-free.dev/usuario/chat", {
+        const response = await fetch("https://taina-preneural-stereochromatically.ngrok-free.dev/usuario/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

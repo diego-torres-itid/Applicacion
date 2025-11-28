@@ -69,7 +69,9 @@ import Notification from "../../../assets/icons/notification.svg";
 import Pastilla from "../../../assets/icons/pastilla.svg";
 import PastillaBlanca from "../../../assets/icons/pastillablanca.svg";
 import Plus from "../../../assets/icons/plus.svg";
+import PlusBlanco from "../../../assets/icons/Pluswhite.svg";
 import Pulmones from "../../../assets/icons/pulmones.svg";
+import Qr from "../../../assets/icons/Qr.svg";
 import Question from "../../../assets/icons/question.svg";
 import RegistroMedico from "../../../assets/icons/registromedico.svg";
 import Regla from "../../../assets/icons/regla.svg";
@@ -160,6 +162,7 @@ const iconMap = {
     DownBlue,
     DownGray,
     EyeCloseBlue,
+    Qr,
     EyeOpenBlue,
     MailBlue,
     SecureBlue,
@@ -212,6 +215,7 @@ const iconMap = {
     Coronavirus,
     DolorCabezaNegro,
     Mas,
+    PlusBlanco,
 };
 
 /**

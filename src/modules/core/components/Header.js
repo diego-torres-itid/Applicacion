@@ -75,7 +75,6 @@ export default function Header({ tipo = "Default", onPress = () => {} }) {
             ) : (
                 <View className="flex-row gap-5">
                     <Icon tipo="Notification" size={22}/>
-                    <Icon tipo="Config" size={22}/>
                 </View>
             )}
         </View>

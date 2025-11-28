@@ -10,7 +10,6 @@ export default function Card({ Icono, IconoFocus, Titulo, Descripcion, isActive 
     const activeHeight = screenHeight * 0.25;
     const inactiveHeight = screenHeight * 0.25;
 
-    // altura animada
     const heightAnim = useRef(new Animated.Value(inactiveHeight)).current;
 
     useEffect(() => {

@@ -27,7 +27,7 @@ export default function HomeScreen() {
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 bg-Blanco">
             <Header tipo="Default" />
-            <View className="absolute top-10 w-full items-center z-10">
+            <View className="absolute top-20 w-full items-center z-10">
                 {mostrarCardInfo && (
                     <Alerta Texto="En desarrollo" Color="#4784ab" />
                 )}

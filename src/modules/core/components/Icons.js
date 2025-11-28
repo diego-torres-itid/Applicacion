@@ -14,6 +14,8 @@ import CalendarGray from "../../../assets/icons/calendar-gray.svg";
 import CalendarOutlineGray from "../../../assets/icons/calendar-outline-gray.svg";
 import Cambiar from "../../../assets/icons/cambiar.svg";
 import Caminar from "../../../assets/icons/caminar.svg";
+import CerebroBlack from "../../../assets/icons/cerebro.svg";
+import CerebroWhite from "../../../assets/icons/cerebroblanco.svg";
 import ChatFillBlack from "../../../assets/icons/chat/chat-fill-black.svg";
 import ChatFillWhite from "../../../assets/icons/chat/chat-fill-white.svg";
 import ChatOutlineBlack from "../../../assets/icons/chat/chat-outilne-black.svg";
@@ -42,6 +44,8 @@ import EyeCloseBlue from "../../../assets/icons/eye-close-blue.svg";
 import EyeCloseGray from "../../../assets/icons/eye-close-gray.svg";
 import EyeOpenBlue from "../../../assets/icons/eye-open-blue.svg";
 import EyeOpenGray from "../../../assets/icons/eye-open-gray.svg";
+import CorazonBlack from "../../../assets/icons/hearthrateblack.svg";
+import CorazonWhite from "../../../assets/icons/hearthratewhite.svg";
 import HearthRate from "../../../assets/icons/heartrate.svg";
 import HomeFillBlack from "../../../assets/icons/home/home-fill-black.svg";
 import HomeFillWhite from "../../../assets/icons/home/home-fill-white.svg";
@@ -82,6 +86,8 @@ import SecureBlue from "../../../assets/icons/secure-blue.svg";
 import SecureGray from "../../../assets/icons/secure-gray.svg";
 import SendBlue from "../../../assets/icons/send-blue.svg";
 import Send from "../../../assets/icons/send.svg";
+import EstomagoNegro from "../../../assets/icons/stomage.svg";
+import EstomagoBlanco from "../../../assets/icons/stomagewhite.svg";
 import Tos from "../../../assets/icons/tos.svg";
 import UpBlue from "../../../assets/icons/up-blue.svg";
 import UpGray from "../../../assets/icons/up-gray.svg";
@@ -216,6 +222,12 @@ const iconMap = {
     DolorCabezaNegro,
     Mas,
     PlusBlanco,
+    CerebroBlack,
+    CerebroWhite,
+    CorazonBlack,
+    CorazonWhite,
+    EstomagoBlanco,
+    EstomagoNegro,
 };
 
 /**
